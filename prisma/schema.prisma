@@ -1,0 +1,207 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id             String    @id @unique @default(cuid())
+  name           String?
+  email          String?   @unique
+  emailVerified  DateTime?
+  image          String?
+  username       String?
+  imageUrl       String?
+  bio            String?
+  onboarded      Boolean   @default(false)
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  hashedpassword String?
+  accounts       Account[]
+  sessions       Session[]
+  order          order[]   @relation("order_owner")
+
+  @@unique([name])
+  @@index([id])
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Store {
+  id         String      @id @unique @default(cuid())
+  name       String
+  userId     String
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @updatedAt
+  billBoards billBoard[] @relation("storeToBillBoard")
+  categories category[]  @relation("storeToCategory")
+  sizes      size[]      @relation("storetosize")
+  colors     color[]     @relation("storetoColor")
+  products   product[]   @relation("storetoProduct")
+  orders     order[]     @relation("storetoOrder")
+
+  @@unique([name, userId])
+  @@index([id])
+}
+
+model billBoard {
+  id         String     @id @unique @default(cuid())
+  storeId    String
+  store      Store      @relation("storeToBillBoard", fields: [storeId], references: [id], onDelete: Cascade)
+  imageUrl   String
+  label      String
+  labelColor String     @default("")
+  text       String
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+  categories category[] @relation("billboardToCategory")
+
+  @@index([id])
+}
+
+model category {
+  id          String    @id @unique @default(cuid())
+  storeId     String
+  store       Store     @relation("storeToCategory", fields: [storeId], references: [id], onDelete: Cascade)
+  billboardId String
+  billboard   billBoard @relation("billboardToCategory", fields: [billboardId], references: [id])
+  name        String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  products    product[] @relation("productocategory")
+  logo        String    @default("")
+
+  @@index([id])
+}
+
+model size {
+  id        String    @id @unique @default(cuid())
+  storeId   String
+  store     Store     @relation("storetosize", fields: [storeId], references: [id], onDelete: Cascade)
+  name      String
+  value     sizevalue
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  products  product[] @relation("productosize")
+
+  @@index([id])
+}
+
+enum sizevalue {
+  S
+  M
+  L
+  XL
+  XXL
+  XXXL
+}
+
+model color {
+  id        String    @id @unique @default(cuid())
+  storeId   String
+  store     Store     @relation("storetoColor", fields: [storeId], references: [id], onDelete: Cascade)
+  name      String
+  value     String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  products  product[] @relation("productocolor")
+
+  @@index([id])
+}
+
+model product {
+  id          String      @id @unique @default(cuid())
+  storeId     String
+  store       Store       @relation("storetoProduct", fields: [storeId], references: [id], onDelete: Cascade)
+  name        String
+  sizeId      String
+  size        size        @relation("productosize", fields: [sizeId], references: [id])
+  categoryId  String
+  category    category    @relation("productocategory", fields: [categoryId], references: [id])
+  colorId     String
+  color       color       @relation("productocolor", fields: [colorId], references: [id])
+  price       Int
+  description String
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  isArchived  Boolean
+  isFeatured  Boolean
+  images      Image[]     @relation("imageToProduct")
+  orderItems  orderItem[] @relation("productToItem")
+
+  @@index([id])
+}
+
+model Image {
+  id        String   @id @unique @default(cuid())
+  productId String
+  product   product  @relation("imageToProduct", fields: [productId], references: [id], onDelete: Cascade)
+  url       String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([id])
+}
+
+model order {
+  id           String      @id @unique @default(cuid())
+  storeId      String
+  store        Store       @relation("storetoOrder", fields: [storeId], references: [id])
+  phoneNumber  String      @default("")
+  address      String      @default("")
+  isPaid       Boolean
+  items        orderItem[] @relation("ordertoItem")
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+  orderOwnerId String
+  orderOwner   User        @relation("order_owner", fields: [orderOwnerId], references: [id])
+
+  @@index([id])
+}
+
+model orderItem {
+  id        String  @id @unique @default(cuid())
+  orderId   String
+  order     order   @relation("ordertoItem", fields: [orderId], references: [id], onDelete: Cascade)
+  productId String
+  product   product @relation("productToItem", fields: [productId], references: [id], onDelete: Cascade)
+  count     Int     @default(1)
+
+  @@index([id])
+}

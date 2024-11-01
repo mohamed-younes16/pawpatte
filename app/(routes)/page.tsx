@@ -18,7 +18,7 @@ export default async function Home() {
   const products = await getAllProducts({ isFeatured: true });
 
   return (
-    <div className="min-h-screen p-6">
+    <div className="min-h-screen px-6">
       {billBoards && <BillBoard billboards={billBoards} />}
       <Features />
       {categories && <CatgoriesCarousel categories={categories} />}

@@ -23,7 +23,7 @@ export default function AboutUs() {
         className="text-lg font-semibold hover:text-second
                    transition-all text-primary block whitespace-nowrap "
       >
-        about us
+        <Button> about us</Button>
       </DialogTrigger>
       <DialogContent
         className="w-[80vw] bg-neutral-200  !translate-y-0 top-[10vh] h-[85vh] 

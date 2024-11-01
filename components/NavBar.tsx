@@ -26,10 +26,10 @@ const NavBar = ({ userData }: { userData: UserFetched | null }) => {
     })();
   }, []);
   const links = [
-    { name: "About Us", href: "/about-us", Comp: <AboutUs /> },
-    // { name: "Contact", href: "/contact" },
     { name: "Dogs", href: "/dogs" },
     { name: "Cats", href: "/cats" },
+    { name: "About Us", href: "/about-us", Comp: <AboutUs /> },
+    // { name: "Contact", href: "/contact" },
   ];
   return (
     <>
@@ -67,7 +67,10 @@ const NavBar = ({ userData }: { userData: UserFetched | null }) => {
 
           <div className="flex-1 w-full max-md:hidden">
             {/* Small list of links */}
-            <div className="flexcenter pl-36 max-lg:pl-14 gap-8 justify-center">
+            <div
+              className="flex items-center pl-14 max-lg:pl-14
+             gap-8 justify-start"
+            >
               {links.map(({ href, Comp, name }, index) =>
                 !!Comp ? (
                   Comp
@@ -78,10 +81,11 @@ const NavBar = ({ userData }: { userData: UserFetched | null }) => {
                     className="text-lg font-semibold hover:text-second
                    transition-all text-primary block whitespace-nowrap "
                   >
-                    {name}
+                    <Button>{name}</Button>
                   </Link>
                 )
               )}
+              <Guarantee />
             </div>
           </div>
           <div
@@ -93,10 +97,12 @@ const NavBar = ({ userData }: { userData: UserFetched | null }) => {
                 <MainNav categories={categories} userData={userData} />
               )}
             </div>
-            <div className="flexcenter gap-3 md:min-w-[250px]">
+            <div
+              className="flex justify-start
+             items-center gap-3 md:min-w-[250px]"
+            >
               <SearchBarDialog />
               <ContactInfo />
-              <Guarantee />
 
               <CliComp>
                 <ManageCart userData={userData} />

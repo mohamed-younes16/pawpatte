@@ -39,7 +39,7 @@ const Footer = () => {
   ];
 
   return (
-    <div className="max-w-7xl space-y-10  mt-8 mx-auto">
+    <div className="max-w-7xl space-y-10  px-6 mt-8 mx-auto">
       <div className="relative p-32 mb-14 max-md:p-6 !text-white  w-full rounded-2xl ">
         <Image
           alt=""

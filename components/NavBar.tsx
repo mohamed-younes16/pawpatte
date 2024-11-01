@@ -12,6 +12,7 @@ import { useMediaQuery } from "usehooks-ts";
 import UserHandler from "./UserHandler";
 import Image from "next/image";
 import Guarantee from "./Guarantee";
+import ContactInfo from "./Contact-us";
 
 const NavBar = ({ userData }: { userData: UserFetched | null }) => {
   const matches: boolean = useMediaQuery("(min-width: 768px)") || false;
@@ -77,16 +78,19 @@ const NavBar = ({ userData }: { userData: UserFetched | null }) => {
               ))}
             </div>
           </div>
-          <div className="flex gap-[1.25rem]  max-sm:!justify-center  max-lg:flex-row-reverse 
-          max-lg:justify-start items-center lg:justify-between">
+          <div
+            className="flex gap-[1.25rem]  max-sm:!justify-center  max-lg:flex-row-reverse 
+          max-lg:justify-start items-center lg:justify-between"
+          >
             <div className="flexcenter  max-md:justify-end  max-md:w-[56px] gap-6 ">
               {!matches && (
                 <MainNav categories={categories} userData={userData} />
               )}
             </div>
             <div className="flexcenter gap-3 md:min-w-[250px]">
-              {" "}
+              <ContactInfo />
               <Guarantee />
+
               <CliComp>
                 <ManageCart userData={userData} />
               </CliComp>

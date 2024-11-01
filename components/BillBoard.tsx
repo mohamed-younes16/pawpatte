@@ -12,6 +12,7 @@ import {
 import Image from "next/image";
 import Autoplay from "embla-carousel-autoplay";
 import { EmblaOptionsType } from "embla-carousel";
+import { Button } from "./ui/button";
 
 const BillBoard = ({ billboards }: { billboards: billBoard[] }) => {
   const OPTIONS: EmblaOptionsType = {
@@ -19,26 +20,27 @@ const BillBoard = ({ billboards }: { billboards: billBoard[] }) => {
     skipSnaps: true,
   };
   return (
-    <div className="backdrop-blur-lg  bg-cover bg-[#ffffff00]  max-w-[95rem] overflow-hidden relative mx-auto rounded-xl ">
+    <div className="backdrop-blur-lg  bg-cover bg-[#ffffff00] 
+     max-w-[95vw] h-[75dvh] max-md:h-[50dvh] overflow-hidden relative mx-auto rounded-xl ">
       <Carousel
         opts={OPTIONS}
         // plugins={[
         //   Autoplay({ delay: 5000, active: true, stopOnInteraction: false }),
         // ]}
-        className="h-full relative max-w-4xl mx-auto"
+        className="h-full relative w-full mx-auto"
       >
-        <CarouselContent className="h-[500px] max-md:h-[200px]">
+        <CarouselContent className=" h-[75dvh] max-md:h-[50dvh] ">
           {billboards.map((billboard, i) => {
             return (
-              <CarouselItem >
+              <CarouselItem className="pl-0">
                 <div
                   style={{ color: billboard.labelColor }}
-                  className=" w-full bg- h-full flex bg-cyan-100 
-                  center relative  font-bold "
+                  className=" w-full bg- h-full text-center relative  font-bold "
                 >
-                  <div className="flex-1  p-12 space-y-6 max-md:space-y-2 max-md:pt-4 pt-12 relative z-20 h-full w-full bg-gradient-to-tr from-black/80  from-[60%] to-black/30">
+                  <div className=" p-12  space-y-12 max-md:space-y-4 max-md:pt-4 pt-12 
+                  relative z-20 h-full w-full bg-gradient-to-tr
+                   from-black/80  from-[60%] to-black/30">
                     <m.p
-                     
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{
                         delay: 0.1,
@@ -47,14 +49,14 @@ const BillBoard = ({ billboards }: { billboards: billBoard[] }) => {
                         stiffness: 260,
                         damping: 20,
                       }}
-                      className="text-white font-bold max-md:text-xl text-5xl"
+                      className="text-white font-bold max-w-3xl 
+                      text-center mx-auto max-lg:text-[10vw] leading-none  text-[5vw] "
                       initial={{ opacity: 0, y: 100 }}
                     >
                       {billboard.label}
                     </m.p>
 
                     <m.p
-                    
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{
                         delay: 0.4,
@@ -63,11 +65,19 @@ const BillBoard = ({ billboards }: { billboards: billBoard[] }) => {
                         stiffness: 260,
                         damping: 20,
                       }}
-                      className="max-w-md text-xl max-md:text-sm font-normal text-white"
+                      className="max-w-lg mx-auto text-3xl md:text-[2vw] text-[3vw]
+                       text-center  font-normal text-accent/80"
                       initial={{ opacity: 0, y: 100 }}
                     >
                       {billboard.text}
                     </m.p>
+                    <div className="w-full bg-black/10 h-[20%] absolute left-0 bottom-0  flexcenter">
+                      <Button className="hover:bg-second 
+                      font-semibold text-2xl max-md:px-5 max-md:py-4 max-md:text-xl px-9 rounded-full py-8" variant={"secondary"} >
+                        shop now
+                      </Button>
+                    </div>
+                    
                   </div>
                   <div className="absolute w-full h-full top-0 left-0">
                     <m.img
@@ -88,7 +98,6 @@ const BillBoard = ({ billboards }: { billboards: billBoard[] }) => {
           className="top-1/2 right-0
           bg-black/10 !rounded-none w-10 !border-none !h-full"
         />
-
       </Carousel>
 
       {/* {link ? (

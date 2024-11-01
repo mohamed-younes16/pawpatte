@@ -55,13 +55,13 @@ const NavBar = ({ userData }: { userData: UserFetched | null }) => {
         h-[100px] transition-all w-full max-sm:shadow-inner   sm:w-full left-0 mx-auto sm:left-0 rounded-b-lg sm:top-0 p-4  "
       >
         <div className="flex h-full  max-sm:!justify-center  justify-between items-center">
-          <Link className="h-[85px] w-[85px] max-sm:hidden relative " href="/">
+          <Link className="h-[85px] w-[115px] max-sm:hidden relative " href="/">
             <Image
               loading="eager"
               alt="logo"
               className=" object-contain"
               fill
-              src={"/assets/logo.png"}
+              src={"/assets/LOGO-PAWPATTE-H.png"}
             />
           </Link>
 

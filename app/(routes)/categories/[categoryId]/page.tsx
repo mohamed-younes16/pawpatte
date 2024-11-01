@@ -16,7 +16,7 @@ interface Query {
 }
 
 export const metadata = {
-  title: "E-commerce Store",
+  title: "pawpatte",
   description: "Storeapp",
 };
 const page = async ({

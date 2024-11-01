@@ -65,8 +65,9 @@ const Guarantee = () => {
       lg:!w-[80vw] lg:max-w-[900px] h-[80vh] overflow-scroll
       ">
 
-        <AlertDialogCancel className="p-0 absolute w-10 rounded-full m-0 h-10 top-2 right-2 ">
-          <X strokeWidth={3} className="rounded-full bg-white w-7 h-7 " />
+        <AlertDialogCancel className="p-0 cursor-pointer 
+        absolute z-50 w-10 rounded-full m-0 h-10 top-2 right-2 ">
+          <X strokeWidth={3} className="rounded-full cursor-pointer bg-white w-7 h-7 " />
         </AlertDialogCancel>
         <AlertDialogHeader className=" relative">
           <AlertDialogTitle className="text-2xl font-bold text-center mb-6">

@@ -14,7 +14,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-  DialogClose
+  DialogClose,
 } from "@/components/ui/dialog";
 export default function AboutUs() {
   return (
@@ -31,7 +31,7 @@ export default function AboutUs() {
       >
         <DialogHeader>
           <DialogDescription>
-            <div className="min-h-screen mt-4 bg-background">
+            <div className="min-h-screen mt-8 bg-background">
               <div className="relative py-20 px-4 sm:px-6 lg:px-8 bg-black text-primary-foreground">
                 <div className="max-w-4xl mx-auto text-center">
                   <h1 className="text-4xl font-extrabold sm:text-5xl md:text-6xl">
@@ -142,8 +142,11 @@ export default function AboutUs() {
             </div>
           </DialogDescription>
         </DialogHeader>
-        <DialogClose className="p-0 absolute w-10 rounded-full m-0 h-10 top-2 right-2 ">
-          <X strokeWidth={3} className="rounded-full bg-white w-7 h-7 " />
+        <DialogClose className="p-0 absolute cursor-pointer w-10 rounded-full m-0 h-10 top-2 right-2 ">
+          <X
+            strokeWidth={3}
+            className="rounded-full cursor-pointer bg-white w-7 h-7 "
+          />
         </DialogClose>
       </DialogContent>
     </Dialog>

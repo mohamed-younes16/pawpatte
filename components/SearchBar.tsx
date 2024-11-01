@@ -56,7 +56,7 @@ const SearchBarDialog = () => {
       if (search.length > 0) {
         searchReq();
       }
-    }, 900);
+    }, 500);
 
     return () => clearTimeout(debounceTimeout);
   }, [search]);
@@ -69,14 +69,17 @@ const SearchBarDialog = () => {
           <Search className="h-6 w-6 " />
         </Button>
       </DialogTrigger>
-      <DialogContent className="w-screen bg-neutral-200 max-w-none translate-y-0 top-[0px]">
+      <DialogContent
+        className="w-screen max-md:p-4 
+       bg-neutral-200 max-w-none translate-y-0 top-[0px]"
+      >
         <DialogHeader>
           <DialogTitle>Search for a Product</DialogTitle>
         </DialogHeader>
         <form className=" w-full h-20 max-w-[700px] mx-auto flex items-center justify-center">
           <label
             htmlFor="search"
-            className="max-md:w-[80%] flexcenter mx-auto gap-4 bg-black-400 rounded-lg px-4 w-full flex"
+            className="max-md:w-full flexcenter mx-auto gap-4 bg-black-400 rounded-lg px-4 w-full flex"
           >
             <Button
               disabled={!search}
@@ -94,9 +97,9 @@ const SearchBarDialog = () => {
             />
           </label>
         </form>
-        <div className="transition-all">
-          { products.length > 0 ? (
-            <ProductsGrid items={products} />
+        <div className="transition-all overflow-scroll max-h-[70dvh] ">
+          {products.length > 0 ? (
+            <ProductsGrid search items={products} />
           ) : noResults ? (
             <div className="text-center text-gray-600 mt-4">
               No products found for "{search}".

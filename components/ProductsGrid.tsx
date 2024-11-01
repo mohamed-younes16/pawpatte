@@ -44,7 +44,7 @@ const ProductsGrid = ({ items }: { items: product[] }) => {
             }}
             initial={{ opacity: 0, y: 50 }}
           >
-            <Card className="w-[350px] overflow-hidden">
+            <Card className="w-[350px] bg-neutral-200 overflow-hidden">
               <CardContent className="h-[250px] group !p-6 rounded-xl overflow-hidden relative">
                 <div
                   className="absolute backdrop-blur-sm 0 transition-all 

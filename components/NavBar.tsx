@@ -11,6 +11,7 @@ import CliComp from "@/providers/modalProvider";
 import { useMediaQuery } from "usehooks-ts";
 import UserHandler from "./UserHandler";
 import Image from "next/image";
+import Guarantee from "./Guarantee";
 
 const NavBar = ({ userData }: { userData: UserFetched | null }) => {
   const matches: boolean = useMediaQuery("(min-width: 768px)") || false;
@@ -21,7 +22,6 @@ const NavBar = ({ userData }: { userData: UserFetched | null }) => {
       setCtagories(cates);
     })();
   }, []);
-  // Define small list of links
   const links = [
     { name: "About Us", href: "/about-us" },
     { name: "Contact", href: "/contact" },
@@ -48,7 +48,7 @@ const NavBar = ({ userData }: { userData: UserFetched | null }) => {
         </div>
       </div>
       <div
-        className="z-30 bg-neutral-300  overflow-y-visible max-sm:bottom-0 !fixed
+        className="z-30 bg-neutral-200  overflow-y-visible max-sm:bottom-0 !fixed
         h-[100px] transition-all w-full max-sm:shadow-inner   sm:w-full left-0 mx-auto sm:left-0 rounded-b-lg sm:top-0 p-4  "
       >
         <div className="flex h-full  max-sm:!justify-center  justify-between items-center">
@@ -77,23 +77,25 @@ const NavBar = ({ userData }: { userData: UserFetched | null }) => {
               ))}
             </div>
           </div>
-          <div className="flex gap-[1.25rem]  max-sm:!justify-center  max-lg:flex-row-reverse max-lg:justify-start items-center lg:justify-between">
+          <div className="flex gap-[1.25rem]  max-sm:!justify-center  max-lg:flex-row-reverse 
+          max-lg:justify-start items-center lg:justify-between">
             <div className="flexcenter  max-md:justify-end  max-md:w-[56px] gap-6 ">
               {!matches && (
                 <MainNav categories={categories} userData={userData} />
               )}
             </div>
             <div className="flexcenter gap-3 md:min-w-[250px]">
+              {" "}
+              <Guarantee />
               <CliComp>
                 <ManageCart userData={userData} />
               </CliComp>
               <div className="md:min-w-[90px] max-md:hidden">
                 {matches && <UserHandler userData={userData} />}
               </div>
-
-              <Button className="max-md:hidden">
+              {/* <Button className="max-md:hidden">
                 <ModeToggle />
-              </Button>
+              </Button> */}
             </div>
           </div>
         </div>

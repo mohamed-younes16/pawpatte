@@ -30,10 +30,10 @@ const CatgoriesCarousel = ({ categories }: { categories: category[] }) => {
           .map((e, index) => (
             <CarouselItem
               key={index}
-              className="max-w-[110px]  max-md:max-w-[80px] md:min-w-[110px]   "
+              className="max-w-[110px]   max-md:max-w-[80px] md:min-w-[110px]   "
             >
               <Link href={`/categories/${e.id}`}>
-                <Card className=" h-[110px] max-md:h-[70px] flexcenter  max-md:max-w-[80px] flex-col gap-2 p-2  relative">
+                <Card className=" h-[110px] max-md:h-[70px] bg-neutral-200 flexcenter  max-md:max-w-[80px] flex-col gap-2 p-2  relative">
                   <Image
                     height={50}
                     width={50}

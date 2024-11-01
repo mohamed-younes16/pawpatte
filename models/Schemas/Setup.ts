@@ -45,23 +45,12 @@ export const SetupSchema = z.object({
   bio: z.string(),
   imageUrl: z.string().min(1),
 });
-export const countrySelectValue = z.object({
-  flag: z.string().min(1),
-  value: z.string().min(1),
-  latlang: z.array(z.number()).min(2),
-  region: z.string(),
-  label: z.string(),
-});
-export const RentSchema = z.object({
-  category: z.string().min(1),
-  title: z.string().min(4),
-  images: z
-    .array(z.string())
-    .refine((arr) => arr.length > 0, { message: "Images cannot be empty" }),
-  description: z.string().min(5),
-  roomCount: z.number().min(1),
-  guestCount: z.number().min(1),
-  bathroomCount: z.number().min(1),
-  price: z.number().min(50),
-  locationValue: countrySelectValue,
+export const GuaranteeSchema = z.object({
+  fullName: z.string().min(1, "Full name is required"),
+  email: z.string().email("Invalid email address"),
+  phone: z.string().min(1, "Phone number is required"),
+  address: z.string().min(1, "Address is required"),
+  productName: z.string().min(1, "Product name is required"),
+  serialNumber: z.string().min(1, "Serial number is required"),
+  notes: z.string().default(""),
 });

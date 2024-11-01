@@ -22,10 +22,8 @@ import {
 } from "@/components/ui/alert-dialog";
 
 import {
-  ClipboardEdit,
   CopyIcon,
   GripVertical,
-  LucideTrash2,
 } from "lucide-react";
 import { toast } from "sonner";
 import { useParams, useRouter } from "next/navigation";

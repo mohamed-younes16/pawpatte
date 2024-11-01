@@ -14,13 +14,14 @@ import Image from "next/image";
 import Guarantee from "./Guarantee";
 import ContactInfo from "./Contact-us";
 import AboutUs from "./AboutUs";
+import SearchBarDialog from "./SearchBar";
 
 const NavBar = ({ userData }: { userData: UserFetched | null }) => {
   const matches: boolean = useMediaQuery("(min-width: 768px)") || false;
   const [categories, setCtagories] = useState(null);
   useEffect(() => {
     (async () => {
-      const cates = await getAllcategories();
+      const cates: any = await getAllcategories();
       setCtagories(cates);
     })();
   }, []);
@@ -93,6 +94,7 @@ const NavBar = ({ userData }: { userData: UserFetched | null }) => {
               )}
             </div>
             <div className="flexcenter gap-3 md:min-w-[250px]">
+              <SearchBarDialog />
               <ContactInfo />
               <Guarantee />
 

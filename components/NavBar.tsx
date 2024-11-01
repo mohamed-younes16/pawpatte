@@ -13,6 +13,7 @@ import UserHandler from "./UserHandler";
 import Image from "next/image";
 import Guarantee from "./Guarantee";
 import ContactInfo from "./Contact-us";
+import AboutUs from "./AboutUs";
 
 const NavBar = ({ userData }: { userData: UserFetched | null }) => {
   const matches: boolean = useMediaQuery("(min-width: 768px)") || false;
@@ -24,8 +25,8 @@ const NavBar = ({ userData }: { userData: UserFetched | null }) => {
     })();
   }, []);
   const links = [
-    { name: "About Us", href: "/about-us" },
-    { name: "Contact", href: "/contact" },
+    { name: "About Us", href: "/about-us", Comp: <AboutUs /> },
+    // { name: "Contact", href: "/contact" },
     { name: "Dogs", href: "/dogs" },
     { name: "Cats", href: "/cats" },
   ];
@@ -66,16 +67,20 @@ const NavBar = ({ userData }: { userData: UserFetched | null }) => {
           <div className="flex-1 w-full max-md:hidden">
             {/* Small list of links */}
             <div className="flexcenter pl-36 max-lg:pl-14 gap-8 justify-center">
-              {links.map((link, index) => (
-                <Link
-                  key={index}
-                  href={link.href}
-                  className="text-lg font-semibold hover:text-white
+              {links.map(({ href, Comp, name }, index) =>
+                !!Comp ? (
+                  Comp
+                ) : (
+                  <Link
+                    key={index}
+                    href={href}
+                    className="text-lg font-semibold hover:text-second
                    transition-all text-primary block whitespace-nowrap "
-                >
-                  {link.name}
-                </Link>
-              ))}
+                  >
+                    {name}
+                  </Link>
+                )
+              )}
             </div>
           </div>
           <div

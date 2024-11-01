@@ -48,7 +48,7 @@ const BillBoard = ({ billboards }: { billboards: billBoard[] }) => {
         ]}
         className="h-full relative w-full mx-auto"
       >
-        <CarouselContent className=" h-[70dvh] max-md:h-[50dvh] ">
+        <CarouselContent className=" h-[70dvh] select-none max-md:h-[50dvh] ">
           {billboards.map((billboard, i) => {
             return (
               <CarouselItem className="pl-0">
@@ -93,6 +93,7 @@ const BillBoard = ({ billboards }: { billboards: billBoard[] }) => {
                    from-black/50  from-[20%] to-transparent"
                     >
                       <m.p
+                        viewport={{ once: true }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{
                           delay: 0.1,
@@ -109,6 +110,7 @@ const BillBoard = ({ billboards }: { billboards: billBoard[] }) => {
                       </m.p>
 
                       <m.p
+                        viewport={{ once: true }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{
                           delay: 0.4,

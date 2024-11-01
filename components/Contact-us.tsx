@@ -28,8 +28,8 @@ export default function ContactInfo() {
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <Button variant={"outline"} className="w-10 p-3 h-10 rounded-full">
-          <PhoneCall />
+        <Button variant={"default"} className="w-10 p-3 h-10 rounded-full">
+          <PhoneCall  />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-[45dvw] max-w-[550px] ">

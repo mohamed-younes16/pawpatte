@@ -27,7 +27,7 @@ const Features = () => {
     },
   ];
   return (
-    <div className="grid grid-cols-1 my-6 sm:grid-cols-2 gap-3 lg:grid-cols-4 max-w-7xl mx-auto">
+    <div className="flexcenter flex-wrap gap-4 my-6 max-w-7xl mx-auto">
       {servicesData.map((e, i) => (
         <m.div
           key={i}
@@ -41,18 +41,18 @@ const Features = () => {
             delay: i * 0.3,
           }}
           viewport={{ once: true }}
-          className="flex items-center py-7 cursor-pointer rounded-2xl sm:max-w-fit backdrop-blur-md 
-        hover:translate-x-1 duration-75 hover:-translate-y-1 max-sm:w-full hover:shadow-2xl gap-4"
+          className="flexcenter px-2 items-center min-w-[275px] py-7 cursor-pointer rounded-2xl sm:max-w-fit  backdrop-blur-md 
+        hover:translate-x-1 duration-150 hover:-translate-y-1 max-sm:w-full border-[1px] border-neutral-300/30 hover:shadow-2xl gap-4"
         >
           <Image
             src={e.icon}
-            className=" object-contain  h-[60px] w-[60px]"
+            className=" object-contain  h-[45px] w-[45px]"
             height={50}
             width={50}
             alt={e.desc}
           />
           <div>
-            <h2 className=" font-bold mb-1 text-xl">{e.title}</h2>
+            <h2 className=" font-bold mb-1 text-lg">{e.title}</h2>
             <p>{e.desc}</p>
           </div>
         </m.div>

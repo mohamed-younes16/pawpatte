@@ -48,7 +48,7 @@ const NavBar = ({ userData }: { userData: UserFetched | null }) => {
         </div>
       </div>
       <div
-        className="z-30 bg-second overflow-y-visible max-sm:bottom-0 !fixed
+        className="z-30 bg-neutral-300  overflow-y-visible max-sm:bottom-0 !fixed
         h-[100px] transition-all w-full max-sm:shadow-inner   sm:w-full left-0 mx-auto sm:left-0 rounded-b-lg sm:top-0 p-4  "
       >
         <div className="flex h-full  max-sm:!justify-center  justify-between items-center">

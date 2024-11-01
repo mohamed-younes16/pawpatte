@@ -97,7 +97,7 @@ const SearchBarDialog = () => {
             />
           </label>
         </form>
-        <div className="transition-all overflow-scroll max-h-[70dvh] ">
+        <div className="transition-all overflow-scroll max-h-[60dvh] ">
           {products.length > 0 ? (
             <ProductsGrid search items={products} />
           ) : noResults ? (

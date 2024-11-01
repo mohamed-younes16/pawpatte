@@ -7,14 +7,14 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const ProductCarousel = ({ productImages }: { productImages: ImageType[] }) => {
-  const [api, setApi] = React.useState<any>();
-  const [current, setCurrent] = React.useState(0);
+  const [api, setApi] = useState<any>();
+  const [current, setCurrent] = useState(0);
 
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!api) {
       return;
     }

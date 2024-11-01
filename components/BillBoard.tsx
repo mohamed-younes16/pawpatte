@@ -13,91 +13,153 @@ import Image from "next/image";
 import Autoplay from "embla-carousel-autoplay";
 import { EmblaOptionsType } from "embla-carousel";
 import { Button } from "./ui/button";
+import { useEffect, useState } from "react";
 
 const BillBoard = ({ billboards }: { billboards: billBoard[] }) => {
   const OPTIONS: EmblaOptionsType = {
     loop: true,
     skipSnaps: true,
   };
+
+  const [api, setApi] = useState<any>();
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    if (!api) {
+      return;
+    }
+    setCurrent(api.selectedScrollSnap() + 1);
+
+    api.on("select", () => {
+      setCurrent(api.selectedScrollSnap() + 1);
+    });
+  }, [api]);
+
   return (
-    <div className="backdrop-blur-lg  bg-cover bg-[#ffffff00] 
-     max-w-[95vw] h-[75dvh] max-md:h-[50dvh] overflow-hidden relative mx-auto rounded-xl ">
+    <div
+      className="backdrop-blur-lg  bg-cover bg-[#ffffff00] 
+     max-w-[95vw] h-[75dvh] max-md:h-[50dvh] overflow-hidden relative mx-auto rounded-xl "
+    >
       <Carousel
+        setApi={setApi}
         opts={OPTIONS}
-        // plugins={[
-        //   Autoplay({ delay: 5000, active: true, stopOnInteraction: false }),
-        // ]}
+        plugins={[
+          Autoplay({ delay: 5000, active: true, stopOnInteraction: false }),
+        ]}
         className="h-full relative w-full mx-auto"
       >
-        <CarouselContent className=" h-[75dvh] max-md:h-[50dvh] ">
+        <CarouselContent className=" h-[70dvh] max-md:h-[50dvh] ">
           {billboards.map((billboard, i) => {
             return (
               <CarouselItem className="pl-0">
-                <div
-                  style={{ color: billboard.labelColor }}
-                  className=" w-full bg- h-full text-center relative  font-bold "
-                >
-                  <div className=" p-12  space-y-12 max-md:space-y-4 max-md:pt-4 pt-12 
-                  relative z-20 h-full w-full bg-gradient-to-tr
-                   from-black/80  from-[60%] to-black/30">
-                    <m.p
-                      whileInView={{ opacity: 1, y: 0 }}
-                      transition={{
-                        delay: 0.1,
-                        duration: 0.6,
-                        type: "spring",
-                        stiffness: 260,
-                        damping: 20,
-                      }}
-                      className="text-white font-bold max-w-3xl 
-                      text-center mx-auto max-lg:text-[10vw] leading-none  text-[5vw] "
-                      initial={{ opacity: 0, y: 100 }}
+                {billboard.imageUrl.endsWith("mp4") ? (
+                  <div
+                    className="  
+                  z-20 h-full w-full relative "
+                  >
+                    <div
+                      className="z-20 absolute
+                       h-full w-full bg-gradient-to-t
+                   from-black/50  from-[20%] to-transparent"
+                    ></div>
+                    <video
+                      loop
+                      muted
+                      className="h-full object-cover w-full"
+                      autoPlay
+                      preload="none"
                     >
-                      {billboard.label}
-                    </m.p>
+                      <source src={billboard.imageUrl} type="video/mp4" />
+                    </video>
 
-                    <m.p
-                      whileInView={{ opacity: 1, y: 0 }}
-                      transition={{
-                        delay: 0.4,
-                        duration: 0.6,
-                        type: "spring",
-                        stiffness: 260,
-                        damping: 20,
-                      }}
-                      className="max-w-lg mx-auto text-3xl md:text-[2vw] text-[3vw]
-                       text-center  font-normal text-accent/80"
-                      initial={{ opacity: 0, y: 100 }}
-                    >
-                      {billboard.text}
-                    </m.p>
                     <div className="w-full bg-black/10 h-[20%] absolute left-0 bottom-0  flexcenter">
-                      <Button className="hover:bg-second 
-                      font-semibold text-2xl max-md:px-5 max-md:py-4 max-md:text-xl px-9 rounded-full py-8" variant={"secondary"} >
+                      <Button
+                        className="hover:bg-second 
+                      font-semibold text-2xl max-md:px-5 max-md:py-4 max-md:text-xl px-9 rounded-full py-8"
+                        variant={"secondary"}
+                      >
                         shop now
                       </Button>
                     </div>
-                    
                   </div>
-                  <div className="absolute w-full h-full top-0 left-0">
-                    <m.img
-                      className={"h-full max w-full block object-cover"}
-                      src={billboard.imageUrl}
-                    />
+                ) : (
+                  <div
+                    style={{ color: billboard.labelColor }}
+                    className=" w-full bg- h-full text-center relative  font-bold "
+                  >
+                    <div
+                      className=" p-12  space-y-12 max-md:space-y-4 max-md:pt-4 pt-12 
+                  relative z-20 h-full w-full bg-gradient-to-t
+                   from-black/50  from-[20%] to-transparent"
+                    >
+                      <m.p
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{
+                          delay: 0.1,
+                          duration: 0.6,
+                          type: "spring",
+                          stiffness: 260,
+                          damping: 20,
+                        }}
+                        className="text-white font-bold max-w-3xl 
+                      text-center mx-auto max-lg:text-[10vw] leading-none  text-[5vw] "
+                        initial={{ opacity: 0, y: 100 }}
+                      >
+                        {billboard.label}
+                      </m.p>
+
+                      <m.p
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{
+                          delay: 0.4,
+                          duration: 0.6,
+                          type: "spring",
+                          stiffness: 260,
+                          damping: 20,
+                        }}
+                        className="max-w-lg mx-auto text-3xl md:text-[2vw] text-[3vw]
+                       text-center  font-normal text-accent/80"
+                        initial={{ opacity: 0, y: 100 }}
+                      >
+                        {billboard.text}
+                      </m.p>
+                      <div className="w-full bg-black/10 h-[20%] absolute left-0 bottom-0  flexcenter">
+                        <Button
+                          className="hover:bg-second 
+                      font-semibold text-2xl max-md:px-5 max-md:py-4 max-md:text-xl px-9 rounded-full py-8"
+                          variant={"secondary"}
+                        >
+                          shop now
+                        </Button>
+                      </div>
+                    </div>
+                    <div className="absolute w-full h-full top-0 left-0">
+                      <m.img
+                        className={"h-full max w-full block object-cover"}
+                        src={billboard.imageUrl}
+                      />
+                    </div>
                   </div>
-                </div>
+                )}
               </CarouselItem>
             );
           })}
         </CarouselContent>
-        <CarouselPrevious
-          className="top-1/2 left-0
-          bg-black/10 !rounded-none w-10 !border-none !h-full"
-        />
-        <CarouselNext
-          className="top-1/2 right-0
-          bg-black/10 !rounded-none w-10 !border-none !h-full"
-        />
+        <div
+          className="bottom-0 left-0 h-[5vh] absolute
+          bg-black/10 flexcenter gap-6  w-full z-50"
+        >
+          {billboards.map((_, i) => (
+            <div
+              key={i}
+              className={`object-contain cursor-pointer h-5 w-5 rounded-full  transition-all
+             select-none h-   () selection:!bg-none ${
+               current == i + 1 ? "bg-second " : " bg-white "
+             }`}
+              onClick={() => api?.scrollTo(i)}
+            />
+          ))}
+        </div>
       </Carousel>
 
       {/* {link ? (

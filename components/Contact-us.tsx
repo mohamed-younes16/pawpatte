@@ -32,7 +32,7 @@ export default function ContactInfo() {
           <PhoneCall />
         </Button>
       </PopoverTrigger>
-      <PopoverContent>
+      <PopoverContent className="w-[45dvw] max-w-[550px] ">
         {" "}
         <Card className="w-full max-w-2xl mx-auto">
           <CardHeader>

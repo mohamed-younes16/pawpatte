@@ -61,11 +61,11 @@ const Guarantee = () => {
           guarantee
         </Button>
       </AlertDialogTrigger>
-      <AlertDialogContent className="bg-neutral-200 h-screen overflow-scroll">
+      <AlertDialogContent className="bg-neutral-200 max-w-4xl lg:!w-[80vw] h-screen overflow-scroll">
         <AlertDialogCancel className="p-0 absolute w-10 h-10 top- right-0 ">
-            <X  className="rounded-full w-6 h-6 "/>
-          </AlertDialogCancel> <AlertDialogHeader className=" relative">
-       
+          <X className="rounded-full w-6 h-6 " />
+        </AlertDialogCancel>{" "}
+        <AlertDialogHeader className=" relative">
           <AlertDialogTitle className="text-2xl font-bold text-center mb-6">
             {" "}
             Product Guarantee Form
@@ -83,66 +83,74 @@ const Guarantee = () => {
             >
               <div className="space-y-4">
                 <h2 className="text-xl font-semibold">Personal Information</h2>
-                <FormField
-                  control={form.control}
-                  name="fullName"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="font-semibold flex " className="font-semibold flex ">Full Name</FormLabel>
-                      <FormControl>
-                        <Input placeholder="your name here" {...field} />
-                      </FormControl>
-                      
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="email"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="font-semibold flex ">Email</FormLabel>
-                      <FormControl>
-                        <Input
-                          type="email"
-                          placeholder="example@mail.com"
-                          {...field}
-                        />
-                      </FormControl>
-                      
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="phone"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="font-semibold flex ">Phone</FormLabel>
-                      <FormControl>
-                        <Input
-                          type="tel"
-                          placeholder="+33 234 567 8901"
-                          {...field}
-                        />
-                      </FormControl>
-                      
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="address"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="font-semibold flex ">Address</FormLabel>
-                      <FormControl>
-                        <Input placeholder="your address" {...field} />
-                      </FormControl>
-                      
-                    </FormItem>
-                  )}
-                />
+                <div className="lg:flex gap-4 w-full">
+                  <FormField
+                    control={form.control}
+                    name="fullName"
+                    render={({ field }) => (
+                      <FormItem className="w-full">
+                        <FormLabel className="font-semibold flex ">
+                          Full Name
+                        </FormLabel>
+                        <FormControl>
+                          <Input placeholder="your name here" {...field} />
+                        </FormControl>
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="email"
+                    render={({ field }) => (
+                      <FormItem className="w-full">
+                        <FormLabel className="font-semibold flex ">
+                          Email
+                        </FormLabel>
+                        <FormControl>
+                          <Input
+                            type="email"
+                            placeholder="example@mail.com"
+                            {...field}
+                          />
+                        </FormControl>
+                      </FormItem>
+                    )}
+                  />
+                </div>
+                <div className="lg:flex gap-4 w-full">
+                  <FormField
+                    control={form.control}
+                    name="phone"
+                    render={({ field }) => (
+                      <FormItem className="w-full">
+                        <FormLabel className="font-semibold flex ">
+                          Phone
+                        </FormLabel>
+                        <FormControl>
+                          <Input
+                            type="tel"
+                            placeholder="+33 234 567 8901"
+                            {...field}
+                          />
+                        </FormControl>
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="address"
+                    render={({ field }) => (
+                      <FormItem className="w-full">
+                        <FormLabel className="font-semibold flex ">
+                          Address
+                        </FormLabel>
+                        <FormControl>
+                          <Input placeholder="your address" {...field} />
+                        </FormControl>
+                      </FormItem>
+                    )}
+                  />
+                </div>
               </div>
               <Separator className="w-full bg-neutral-400" />
               {/* Product Information Section */}
@@ -153,11 +161,12 @@ const Guarantee = () => {
                   name="productName"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="font-semibold flex ">Product Name</FormLabel>
+                      <FormLabel className="font-semibold flex ">
+                        Product Name
+                      </FormLabel>
                       <FormControl>
                         <Input placeholder="Product Name" {...field} />
                       </FormControl>
-                      
                     </FormItem>
                   )}
                 />
@@ -167,11 +176,12 @@ const Guarantee = () => {
                   name="serialNumber"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="font-semibold flex ">Serial Number</FormLabel>
+                      <FormLabel className="font-semibold flex ">
+                        Serial Number
+                      </FormLabel>
                       <FormControl>
                         <Input placeholder="Serial Number" {...field} />
                       </FormControl>
-                      
                     </FormItem>
                   )}
                 />
@@ -180,7 +190,9 @@ const Guarantee = () => {
                   name="issueDescription"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="font-semibold flex ">Issue Description</FormLabel>
+                      <FormLabel className="font-semibold flex ">
+                        Issue Description
+                      </FormLabel>
                       <FormControl>
                         <Textarea
                           placeholder="Describe the issue"
@@ -188,7 +200,6 @@ const Guarantee = () => {
                           className="h-32"
                         />
                       </FormControl>
-                      
                     </FormItem>
                   )}
                 />
@@ -201,12 +212,13 @@ const Guarantee = () => {
             </form>
           </Form>
         </AlertDialogHeader>
-
         <AlertDialogFooter>
           <AlertDialogCancel className="p-0">
-            <Button variant={"destructive"} className="w-full"> cancel</Button>
+            <Button variant={"destructive"} className="w-full">
+              {" "}
+              cancel
+            </Button>
           </AlertDialogCancel>
-
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

@@ -25,8 +25,8 @@ export default function AboutUs() {
         about us
       </DialogTrigger>
       <DialogContent
-        className="w-[80vw] h-screen 
-      overflow-scroll max-w-[1000px] "
+        className="w-[80vw] !translate-y-0 top-[10vh] h-[85vh] 
+      overflow-scroll max-w-[900px] "
       >
         <DialogHeader>
           <DialogDescription>

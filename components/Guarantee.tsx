@@ -61,7 +61,9 @@ const Guarantee = () => {
           guarantee
         </Button>
       </AlertDialogTrigger>
-      <AlertDialogContent className="bg-neutral-200 max-w-4xl lg:!w-[80vw] h-screen overflow-scroll">
+      <AlertDialogContent className="bg-neutral-200 max-w-4xl 
+      lg:!w-[80vw] lg:max-w-[900px] h-[80vh] overflow-scroll
+      ">
         <AlertDialogCancel className="p-0 absolute w-10 h-10 top- right-0 ">
           <X className="rounded-full w-6 h-6 " />
         </AlertDialogCancel>{" "}

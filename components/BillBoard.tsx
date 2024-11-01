@@ -72,7 +72,7 @@ const BillBoard = ({ billboards }: { billboards: billBoard[] }) => {
                       <source src={billboard.imageUrl} type="video/mp4" />
                     </video>
 
-                    <div className="w-full bg-black/10 h-[20%] absolute left-0 bottom-0  flexcenter">
+                    <div className="w-full h-[20%] absolute left-0 bottom-0  z-40 flexcenter">
                       <Button
                         className="hover:bg-second 
                       font-semibold text-2xl max-md:px-5 max-md:py-4 max-md:text-xl px-9 rounded-full py-8"
@@ -125,7 +125,7 @@ const BillBoard = ({ billboards }: { billboards: billBoard[] }) => {
                       >
                         {billboard.text}
                       </m.p>
-                      <div className="w-full bg-black/10 h-[20%] absolute left-0 bottom-0  flexcenter">
+                      <div className="w-full h-[20%] absolute left-0 bottom-0  flexcenter">
                         <Button
                           className="hover:bg-second 
                       font-semibold text-2xl max-md:px-5 max-md:py-4 max-md:text-xl px-9 rounded-full py-8"

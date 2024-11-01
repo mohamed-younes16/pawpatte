@@ -99,7 +99,8 @@ const ManageCart = ({ userData }: { userData: UserFetched | null }) => {
         </SheetTrigger>
         <SheetContent
           side={"left"}
-          className=" bg-neutral-300 !max-w-none w-[100dvw] z-[9999] xl:w-[80dvw]"
+          className=" bg-neutral-300 
+          w-[100dvw] z-[9999] xl:w-[50dvw] !max-w-[1000px]"
         >
           <SheetClose
             asChild

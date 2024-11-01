@@ -19,7 +19,7 @@ const page = async ({
   const product: product = await getProduct(productId);
 
   return (
-    <div className=" my-16">
+    <div className=" my-16 max-w-7xl mx-auto">
       <div className="flex gap-10 max-lg:flex-wrap  max-lg:justify-center">
         <ProductCarousel productImages={product.images} />
         <div className=" space-y-7 max-w-lg">

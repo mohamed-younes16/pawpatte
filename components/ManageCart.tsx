@@ -91,7 +91,10 @@ const ManageCart = ({ userData }: { userData: UserFetched | null }) => {
 
   return (
     <div>
-      <Sheet  open={SideBarOpen}>
+      <Sheet
+        onOpenChange={(e) => e === false && setSideBarOpen(e)}
+        open={SideBarOpen}
+      >
         <SheetTrigger asChild onClick={() => setSideBarOpen(!SideBarOpen)}>
           <Button className="flexcenter gap-6 text-xl">
             <ShoppingBag /> {products.length}

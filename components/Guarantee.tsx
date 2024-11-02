@@ -1,15 +1,14 @@
 "use client";
 import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { ShieldCheck, X } from "lucide-react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -54,31 +53,37 @@ const Guarantee = () => {
   };
 
   return (
-    <AlertDialog>
-      <AlertDialogTrigger asChild>
+    <Dialog>
+      <DialogTrigger asChild>
         <Button className="flexcenter gap-1">
           <ShieldCheck />
           guarantee
         </Button>
-      </AlertDialogTrigger>
-      <AlertDialogContent className="bg-neutral-200 max-w-4xl 
+      </DialogTrigger>
+      <DialogContent
+        className="bg-neutral-200 max-w-4xl 
       lg:!w-[80vw] lg:max-w-[900px] h-[80vh] overflow-scroll
-      ">
-
-        <AlertDialogCancel className="p-0 cursor-pointer 
-        absolute z-50 w-10 rounded-full m-0 h-10 top-2 right-2 ">
-          <X strokeWidth={3} className="rounded-full cursor-pointer bg-white w-7 h-7 " />
-        </AlertDialogCancel>
-        <AlertDialogHeader className=" relative">
-          <AlertDialogTitle className="text-2xl font-bold text-center mb-6">
+      "
+      >
+        <DialogClose
+          className="p-0 cursor-pointer 
+        absolute z-50 w-10 rounded-full m-0 h-10 top-2 right-2 "
+        >
+          <X
+            strokeWidth={3}
+            className="rounded-full cursor-pointer bg-white w-7 h-7 "
+          />
+        </DialogClose>
+        <DialogHeader className=" relative">
+          <DialogTitle className="text-2xl font-bold text-center mb-6">
             {" "}
             Product Guarantee Form
-          </AlertDialogTitle>
+          </DialogTitle>
 
-          <AlertDialogDescription>
+          <DialogDescription>
             fill this form correctly with your information to recieve your
             guarantee
-          </AlertDialogDescription>
+          </DialogDescription>
 
           <Form {...form}>
             <form
@@ -215,17 +220,17 @@ const Guarantee = () => {
               </Button>
             </form>
           </Form>
-        </AlertDialogHeader>
-        <AlertDialogFooter>
-          <AlertDialogCancel className="p-0">
+        </DialogHeader>
+        <DialogFooter>
+          <DialogClose className="p-0">
             <Button variant={"destructive"} className="w-full">
               {" "}
               cancel
             </Button>
-          </AlertDialogCancel>
-        </AlertDialogFooter>
-      </AlertDialogContent>
-    </AlertDialog>
+          </DialogClose>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
   );
 };
 

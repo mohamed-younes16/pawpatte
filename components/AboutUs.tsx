@@ -21,13 +21,14 @@ export default function AboutUs() {
     <Dialog>
       <DialogTrigger
         className="text-lg font-semibold hover:text-second
-                   transition-all text-primary block whitespace-nowrap "
+                   text-primary block whitespace-nowrap "
       >
         <Button> about us</Button>
       </DialogTrigger>
       <DialogContent
-        className="w-[80vw] bg-neutral-200  !translate-y-0 top-[10vh] h-[85vh] 
-      overflow-scroll max-w-[900px] "
+        className="bg-neutral-200 max-w-4xl 
+      lg:!w-[80vw] lg:max-w-[900px] h-[80vh] overflow-scroll
+      "
       >
         <DialogHeader>
           <DialogDescription>

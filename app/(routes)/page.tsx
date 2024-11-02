@@ -4,7 +4,7 @@ import ProductsGrid from "@/components/ProductsGrid";
 import BillBoard from "@/components/BillBoard";
 import { ShoppingCart } from "lucide-react";
 import CatgoriesCarousel from "@/components/CatgoriesCarousel";
-import Image from "next/image";
+
 import Features from "@/components/Features";
 
 export const metadata = {

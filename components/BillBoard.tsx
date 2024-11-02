@@ -51,7 +51,7 @@ const BillBoard = ({ billboards }: { billboards: billBoard[] }) => {
         <CarouselContent className=" h-[70dvh] select-none max-md:h-[50dvh] ">
           {billboards.map((billboard, i) => {
             return (
-              <CarouselItem className="pl-0">
+              <CarouselItem key={i} className="pl-0">
                 {billboard.imageUrl.endsWith("mp4") ? (
                   <div
                     className="  

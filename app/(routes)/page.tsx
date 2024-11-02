@@ -15,7 +15,7 @@ export default async function Home() {
   const billBoards: billBoard[] = await getBillBoards();
 
   const categories = await getAllcategories();
-  const products = await getAllProducts({ isFeatured: true });
+  const products = await getAllProducts({ isFeatured: true, });
 
   return (
     <div className="min-h-screen px-6">

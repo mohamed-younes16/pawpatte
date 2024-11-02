@@ -7,10 +7,9 @@ import React from "react";
 import AddProduct from "./components/AddProduct";
 
 export const metadata = {
-  title: 'E-commerce Store',
-  description: 'Storeapp',
- 
-}
+  title: "pawpatte",
+  description: "Storeapp",
+};
 const page = async ({
   params: { productId },
 }: {
@@ -27,12 +26,15 @@ const page = async ({
           <p className="text-xl text-foreground">{product.description} </p>
           <div className="flex text-xl items-center gap-4">
             Color{" "}
-            <div className="rounded-full h-4 w-4" style={{ backgroundColor:product.color.value }}></div>
+            <div
+              className="rounded-full h-4 w-4"
+              style={{ backgroundColor: product.color.value }}
+            ></div>
           </div>
           <h2 className="text-2xl font-bold">
             {formatedPrice(product.price)}{" "}
           </h2>
-        <AddProduct product={product}/>
+          <AddProduct product={product} />
         </div>
       </div>
     </div>

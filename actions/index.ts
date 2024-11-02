@@ -35,7 +35,7 @@ export const getAllcategories = async () => {
   products = await req();
   return products;
 };
-export const getProductByName = async (name: string) => {
+export const getProductsByName = async (name: string) => {
   return await (
     await fetch(`${apiLink}/products/search?q=${name}`, {
       cache: "no-cache",

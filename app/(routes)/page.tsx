@@ -8,7 +8,7 @@ import Image from "next/image";
 import Features from "@/components/Features";
 
 export const metadata = {
-  title: "E-commerce Store",
+  title: "pawpatte",
   description: "Storeapp",
 };
 export default async function Home() {

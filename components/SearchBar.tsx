@@ -16,7 +16,7 @@ import {
 } from "./ui/dialog";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { getProductByName } from "@/actions";
+import { getProductsByName } from "@/actions";
 import { Search } from "lucide-react";
 import ProductsGrid from "./ProductsGrid";
 import { Button } from "./ui/button";
@@ -39,7 +39,7 @@ const SearchBarDialog = () => {
   const search = watch("query") || "";
 
   const searchReq = async () => {
-    getProductByName(search).then((e: { products: product[] | [] }) => {
+    getProductsByName(search).then((e: { products: product[] | [] }) => {
       if (e.products.length > 0) {
         setProducts(e.products);
         setNoResults(false); // Reset no results state if products are found

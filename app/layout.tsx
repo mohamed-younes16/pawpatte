@@ -31,7 +31,8 @@ export default async function RootLayout({
             className="  min-h-screen 
             dark:bg-[url(/assets/magicdark.svg)]
              transition-all 
-     pb-0 bg-[url(/assets/b1.png)]
+     pb-0 bg-[ul(/assets/b1.png)]
+     bg-white
        bg-fixed max-sm:pb-[110px]   
     
      pt-[100px] 

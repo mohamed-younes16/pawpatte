@@ -1,28 +1,31 @@
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["fullTextSearch"]
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 model User {
-  id             String    @id @unique @default(cuid())
+  id             String      @id @unique @default(cuid())
   name           String?
-  email          String?   @unique
+  email          String?     @unique
   emailVerified  DateTime?
   image          String?
   username       String?
   imageUrl       String?
   bio            String?
-  onboarded      Boolean   @default(false)
-  createdAt      DateTime  @default(now())
-  updatedAt      DateTime  @updatedAt
+  onboarded      Boolean     @default(false)
+  createdAt      DateTime    @default(now())
+  updatedAt      DateTime    @updatedAt
   hashedpassword String?
   accounts       Account[]
   sessions       Session[]
-  order          order[]   @relation("order_owner")
+  order          order[]     @relation("order_owner")
+  guranteeList   Guarantee[]
 
   @@unique([name])
   @@index([id])
@@ -78,6 +81,11 @@ model Store {
 
   @@unique([name, userId])
   @@index([id])
+}
+
+enum billBoardType {
+  IMAGE
+  VIDEO
 }
 
 model billBoard {
@@ -146,24 +154,47 @@ model color {
 }
 
 model product {
-  id          String      @id @unique @default(cuid())
-  storeId     String
-  store       Store       @relation("storetoProduct", fields: [storeId], references: [id], onDelete: Cascade)
-  name        String
-  sizeId      String
-  size        size        @relation("productosize", fields: [sizeId], references: [id])
-  categoryId  String
-  category    category    @relation("productocategory", fields: [categoryId], references: [id])
-  colorId     String
-  color       color       @relation("productocolor", fields: [colorId], references: [id])
-  price       Int
-  description String
-  createdAt   DateTime    @default(now())
-  updatedAt   DateTime    @updatedAt
-  isArchived  Boolean
-  isFeatured  Boolean
-  images      Image[]     @relation("imageToProduct")
-  orderItems  orderItem[] @relation("productToItem")
+  id           String      @id @unique @default(cuid())
+  storeId      String
+  store        Store       @relation("storetoProduct", fields: [storeId], references: [id], onDelete: Cascade)
+  name         String
+  sizeId       String
+  size         size        @relation("productosize", fields: [sizeId], references: [id])
+  categoryId   String
+  category     category    @relation("productocategory", fields: [categoryId], references: [id])
+  colorId      String
+  color        color       @relation("productocolor", fields: [colorId], references: [id])
+  price        Int
+  description  String
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+  isArchived   Boolean
+  isFeatured   Boolean
+  images       Image[]     @relation("imageToProduct")
+  orderItems   orderItem[] @relation("productToItem")
+  guranteeList Guarantee[]
+
+  @@index([id])
+}
+
+model Guarantee {
+  id           String @id @unique @default(cuid())
+  fullName     String
+  email        String @unique
+  phone        String
+  address      String
+  productName  String
+  serialNumber String
+  notes        String @default("")
+
+  userEmail String
+  costumer  User   @relation(fields: [userEmail], references: [email], onDelete: Cascade)
+
+  productId String
+  product   product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([id])
 }

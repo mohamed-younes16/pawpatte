@@ -26,15 +26,15 @@ const NavBar = ({ userData }: { userData: UserFetched | null }) => {
     })();
   }, []);
   const links = [
-    { name: "Dogs", href: "/dogs" },
-    { name: "Cats", href: "/cats" },
+    { name: "Dogs", href: "/product/animal/dog" },
+    { name: "Cats", href: "/product/animal/cat" },
     { name: "About Us", href: "/about-us", Comp: <AboutUs /> },
     // { name: "Contact", href: "/contact" },
   ];
   return (
     <>
       <div
-        className="z-30 overflow-y-visible fixed bg-main h-[80px] 
+        className="z-30 overflow-y-visible fixed bg-neutral-200 h-[80px] 
         transition-all  w-full  mx-auto left-0 rounded-b-lg top-[0px] p-4  sm:hidden"
       >
         <div className="flex w-full max-sm:hidden h-full justify-between items-center">

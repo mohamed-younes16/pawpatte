@@ -5,6 +5,7 @@ import {
   DialogContent,
   DialogTitle,
   DialogDescription,
+  DialogClose,
 } from "@/components/ui/dialog";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -86,9 +87,6 @@ export function DiscountDialog({
       open={discountDialogOpen}
       onOpenChange={setDiscountDialogOpen}
     >
-      {/* <DialogTrigger className="hidden" >
-        <Button>Check Discount Eligibility</Button>
-      </DialogTrigger> */}
       <DialogContent className=" bg-neutral-200">
         <DialogTitle className="text-center">Congratulations!</DialogTitle>
         <Separator className="my-4 bg-neutral-400" />
@@ -97,6 +95,7 @@ export function DiscountDialog({
             <div className="h-20 flexcenter flex-col">
               {discountCode && (
                 <>
+                  <p className="text-3xl font-bold text-black">{discount?.amount}% </p>
                   <h2 className="text-lg font-semibold">Your Discount Code:</h2>
                   <p className="text-2xl font-semibold text-black">
                     {discountCode.toLocaleUpperCase().slice(0, 10)}
@@ -157,6 +156,7 @@ export function DiscountDialog({
             </>
           )}
         </DialogDescription>
+   
       </DialogContent>
     </Dialog>
   );

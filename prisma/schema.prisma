@@ -26,6 +26,7 @@ model User {
   sessions       Session[]
   order          order[]     @relation("order_owner")
   guranteeList   Guarantee[]
+  discount       discount?   @relation("discountToUser")
 
   @@unique([name])
   @@index([id])
@@ -93,9 +94,10 @@ model billBoard {
   storeId    String
   store      Store      @relation("storeToBillBoard", fields: [storeId], references: [id], onDelete: Cascade)
   imageUrl   String
-  label      String
-  labelColor String     @default("")
-  text       String
+  label      String?
+  labelColor String?    @default("")
+  text       String?
+  shown      Boolean    @default(true)
   createdAt  DateTime   @default(now())
   updatedAt  DateTime   @updatedAt
   categories category[] @relation("billboardToCategory")
@@ -148,7 +150,7 @@ model color {
   value     String
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
-  products  product[] @relation("productocolor")
+  products  product[]
 
   @@index([id])
 }
@@ -162,9 +164,9 @@ model product {
   size         size        @relation("productosize", fields: [sizeId], references: [id])
   categoryId   String
   category     category    @relation("productocategory", fields: [categoryId], references: [id])
-  colorId      String
-  color        color       @relation("productocolor", fields: [colorId], references: [id])
+  color        color[]
   price        Int
+  animal       Animal
   description  String
   createdAt    DateTime    @default(now())
   updatedAt    DateTime    @updatedAt
@@ -175,6 +177,23 @@ model product {
   guranteeList Guarantee[]
 
   @@index([id])
+}
+
+model discount {
+  id            String   @id @unique @default(cuid())
+  userEmail     String   @unique
+  discountOwner User     @relation("discountToUser", fields: [userEmail], references: [email], onDelete: Cascade)
+  amount        Int
+  isUsed        Boolean  @default(false)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@index([id])
+}
+
+enum Animal {
+  DOG
+  CAT
 }
 
 model Guarantee {

@@ -12,6 +12,8 @@ type Store = {
   delteAllProducts: () => void;
   SideBarOpen: boolean;
   setSideBarOpen: (v: boolean) => void;
+  discountDialogOpen: boolean;
+  setDiscountDialogOpen: (v: boolean) => void;
   setquantity: (productId: string, v: 1 | -1) => void;
   isLoginModalOpen: boolean;
   setisLoginModalOpen: (v: boolean) => void;
@@ -28,6 +30,8 @@ export const useCart = create<Store>()(
       setisLoginModalOpen: (v: boolean) => set(() => ({ isLoginModalOpen: v })),
       SideBarOpen: false,
       setSideBarOpen: (v: boolean) => set(() => ({ SideBarOpen: v })),
+      discountDialogOpen: false,
+      setDiscountDialogOpen: (v: boolean) => set(() => ({ discountDialogOpen: v })),
       products: [],
       addProducts: (v: product) =>
         set((s) => {

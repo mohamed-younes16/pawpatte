@@ -8,6 +8,9 @@ import { Urbanist } from "next/font/google";
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
 import getCurrentUser from "@/actions/getCurrentUser";
+import { getDiscountEligible } from "@/actions";
+import { DiscountDialog } from "@/components/modals/Discount";
+import { discount } from "@prisma/client";
 
 const font = Urbanist({ subsets: ["latin"] });
 export const apiLink = process.env.NEXT_PUBLIC_API_URL;
@@ -17,8 +20,12 @@ export default async function RootLayout({
   children: ReactNode;
 }) {
   const user = await getCurrentUser();
-
-  return (
+  console.log(user);
+  const isEligible: { message: string; discount: discount } =
+    (await getDiscountEligible(user?.id || "")) || null;
+  const discount = isEligible.discount
+  
+  return(
     <html suppressHydrationWarning lang="en" className={`${font.className} `}>
       <body>
         <ThemeProvider
@@ -34,14 +41,19 @@ export default async function RootLayout({
      pb-0 bg-[ul(/assets/b1.png)]
      bg-white
        bg-fixed max-sm:pb-[110px]   
-    
-     pt-[100px] 
-    
+     pt-[100px]    
   "
           >
             <Analytics />
             <Toaster richColors position="top-center" />
             <NavBar userData={user} />
+            {user ? (
+              <DiscountDialog
+                userId={user?.id}
+                discount={discount}
+              />
+            ) : null}
+
             {children}
           </div>
         </ThemeProvider>

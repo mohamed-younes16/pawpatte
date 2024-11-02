@@ -11,9 +11,9 @@ import CliComp from "@/providers/modalProvider";
 import { useMediaQuery } from "usehooks-ts";
 import UserHandler from "./UserHandler";
 import Image from "next/image";
-import Guarantee from "./Guarantee";
+import Guarantee from "./modals/Guarantee";
 import ContactInfo from "./Contact-us";
-import AboutUs from "./AboutUs";
+import AboutUs from "./modals/AboutUs";
 import SearchBarDialog from "./SearchBar";
 
 const NavBar = ({ userData }: { userData: UserFetched | null }) => {

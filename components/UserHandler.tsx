@@ -9,7 +9,13 @@ import Image from "next/image";
 import LoginModal from "./modals/LoginModal";
 import RegisterModal from "./modals/RegisterModal";
 import MenuItem from "./navbar/MenuItem";
-import { Album, LucideLogOut, Menu, UserIcon } from "lucide-react";
+import {
+  Album,
+  BadgePercent,
+  LucideLogOut,
+  Menu,
+  UserIcon,
+} from "lucide-react";
 import { Separator } from "./ui/separator";
 import SignOutButton from "./inputs/SignOutButton";
 import { useEffect, useState } from "react";
@@ -28,7 +34,7 @@ const UserHandler = ({ userData }: { userData: UserFetched | null }) => {
     const redirected = searchParams.get("redirected") === "true";
     setpopopen(redirected && userData === null);
   }, [searchParams]);
-
+  const { discountDialogOpen, setDiscountDialogOpen } = useCart();
   return (
     <Popover
       open={popopen}
@@ -73,11 +79,20 @@ const UserHandler = ({ userData }: { userData: UserFetched | null }) => {
           </CliComp>
         ) : (
           <>
-            
             <MenuItem onclick={() => {}}>
               <Link className="w-full flex gap-2" href={"/profile"}>
                 <UserIcon /> Profile
               </Link>
+            </MenuItem>
+            <Separator className="my-2" />
+            <MenuItem
+              onclick={() => {
+                setDiscountDialogOpen(!discountDialogOpen);
+              }}
+            >
+              <div className="w-full flex gap-2">
+                <BadgePercent /> Discount
+              </div>
             </MenuItem>
           </>
         )}

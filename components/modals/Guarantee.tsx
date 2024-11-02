@@ -23,11 +23,11 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 import { toast } from "sonner";
 import { GuaranteeSchema } from "@/models/Schemas/Setup";
-import { Textarea } from "./ui/textarea";
-import { Separator } from "./ui/separator";
+import { Textarea } from "../ui/textarea";
+import { Separator } from "../ui/separator";
 
 const Guarantee = () => {
   const form = useForm({

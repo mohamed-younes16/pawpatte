@@ -187,6 +187,7 @@ model discount {
   isUsed        Boolean  @default(false)
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
+  order         order[]
 
   @@index([id])
 }
@@ -230,17 +231,21 @@ model Image {
 }
 
 model order {
-  id           String      @id @unique @default(cuid())
-  storeId      String
-  store        Store       @relation("storetoOrder", fields: [storeId], references: [id])
-  phoneNumber  String      @default("")
-  address      String      @default("")
-  isPaid       Boolean
-  items        orderItem[] @relation("ordertoItem")
-  createdAt    DateTime    @default(now())
-  updatedAt    DateTime    @updatedAt
-  orderOwnerId String
-  orderOwner   User        @relation("order_owner", fields: [orderOwnerId], references: [id])
+  id              String      @id @unique @default(cuid())
+  storeId         String
+  store           Store       @relation("storetoOrder", fields: [storeId], references: [id])
+  phoneNumber     String      @default("")
+  address         String      @default("")
+  isPaid          Boolean
+  items           orderItem[] @relation("ordertoItem")
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+  orderOwnerEmail String
+  orderOwnerName  String
+  discountCode    String?
+  discountUsed    discount?   @relation(fields: [discountCode], references: [id])
+
+  orderOwner User? @relation("order_owner", fields: [orderOwnerEmail], references: [id])
 
   @@index([id])
 }

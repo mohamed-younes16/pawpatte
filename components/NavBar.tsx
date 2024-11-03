@@ -60,11 +60,13 @@ const NavBar = ({ userData }: { userData: UserFetched | null }) => {
               className="flex items-center
              gap-8 max-lg:gap-4 justify-start"
             >
-              <Guarantee />
-              <div className="w-fit">
-                <AboutUs />
-              </div>
-
+              {" "}
+              <CliComp>
+                <Guarantee />
+                <div className="w-fit">
+                  <AboutUs />
+                </div>
+              </CliComp>
               {links.map(({ href, name }, index) => (
                 <Link
                   key={index}

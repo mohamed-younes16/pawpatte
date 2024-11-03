@@ -22,7 +22,7 @@ const page = async ({
 
   return (
     <div className=" my-16 max-w-7xl mx-auto">
-      {products.length > 0 ? (
+      {products?.length > 0 ? (
         <ProductsGrid items={products} />
       ) : (
         <div className="flex flex-col">

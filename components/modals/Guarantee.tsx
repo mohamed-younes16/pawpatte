@@ -222,7 +222,7 @@ const Guarantee = () => {
           </Form>
         </DialogHeader>
         <DialogFooter>
-          <DialogClose className="p-0">
+          <DialogClose className="p-0 w-full">
             <Button variant={"destructive"} className="w-full">
               {" "}
               cancel

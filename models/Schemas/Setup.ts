@@ -1,7 +1,4 @@
-
-
 import * as z from "zod";
-
 
 export const RegisterSchema = z
   .object({
@@ -31,7 +28,6 @@ export const Loginschema = z.object({
     .max(14),
 });
 
-
 export const reviewSchema = z.object({
   message: z
     .string()
@@ -44,6 +40,13 @@ export const SetupSchema = z.object({
   username: z.string().min(4),
   bio: z.string(),
   imageUrl: z.string().min(1),
+});
+export const checkoutSchema = z.object({
+  name: z.string().min(4),
+  email: z.string().email(),
+  address: z.string().min(1),
+  phoneNumber: z.string().min(1),
+  discountCode: z.string().default("").optional(),
 });
 export const GuaranteeSchema = z.object({
   fullName: z.string().min(1, "Full name is required"),

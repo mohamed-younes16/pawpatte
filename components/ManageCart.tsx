@@ -134,18 +134,20 @@ const ManageCart = ({ userData }: { userData: UserFetched | null }) => {
         </SheetTrigger>
         <SheetContent
           side={"right"}
-          className="bg-neutral-200 pt-0 w-[90dvw] z-[9999] h-screen overflow-y-scroll xl:w-[50dvw] !max-w-[1000px]"
+          className="bg-neutral-200 pt-0  w-[90dvw] z-[9999] 
+          h-screen overflow-y-scroll xl:w-[50dvw] !max-w-[1000px]"
         >
           <SheetClose
-            asChild
-            className="absolute top-4 right-4 z-30"
+            className="fixed h-[50px] w-[90dvw] top-0 right-0 
+            flex justify-end backdrop-blur-sm py-2 px-1 4 z-30"
             onClick={() => setSideBarOpen(false)}
           >
-            <Button>
-              <X />
+            <Button className="text-sm" size={"sm"}>
+              close
+              <X className="h-5 w-5" />
             </Button>
           </SheetClose>
-          <div className="mt-4 space-y-2">
+          <div className="mt-[50px] space-y-2">
             <Heading
               icon={<ShoppingBasketIcon className="text-main w-8 p-0 h-8" />}
               description="manage your cart"

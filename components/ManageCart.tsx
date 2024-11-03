@@ -14,6 +14,7 @@ import {
   PlusCircle,
   ShoppingBag,
   ShoppingBasketIcon,
+  Trash2,
   X,
 } from "lucide-react";
 import Image from "next/image";
@@ -133,7 +134,7 @@ const ManageCart = ({ userData }: { userData: UserFetched | null }) => {
         </SheetTrigger>
         <SheetContent
           side={"right"}
-          className="bg-neutral-200 w-[90dvw] z-[9999] h-screen overflow-y-scroll xl:w-[50dvw] !max-w-[1000px]"
+          className="bg-neutral-200 pt-0 w-[90dvw] z-[9999] h-screen overflow-y-scroll xl:w-[50dvw] !max-w-[1000px]"
         >
           <SheetClose
             asChild
@@ -144,21 +145,27 @@ const ManageCart = ({ userData }: { userData: UserFetched | null }) => {
               <X />
             </Button>
           </SheetClose>
-          <div className="mt-4 space-y-8">
+          <div className="mt-4 space-y-2">
             <Heading
               icon={<ShoppingBasketIcon className="text-main w-8 p-0 h-8" />}
               description="manage your cart"
               title="Cart Items"
               className="text-main "
             />
-            <Button
-              variant={"destructive"}
-              disabled={fetching}
-              onClick={() => delteAllProducts()}
-              className="py-4 relative flexcenter gap-4 text-xl "
-            >
-              Delete All Products
-            </Button>
+            <div className="flex w-full justify-end">
+              <Button
+                size={"sm"}
+                variant={"destructive"}
+                disabled={fetching}
+                onClick={() => delteAllProducts()}
+                className="py-4 relative  gap-4 text-xl "
+              >
+                {" "}
+                <Trash2 />
+                Empty All
+              </Button>
+            </div>
+
             <div className="flex gap-6 flex-col max-lg:flex-wrap">
               {products.length > 0 ? (
                 <>
@@ -181,7 +188,7 @@ const ManageCart = ({ userData }: { userData: UserFetched | null }) => {
                                 />
                               </div>
 
-                              <CardHeader className="basis-2/3">
+                              <CardHeader className="basis-2/3 py-0">
                                 <Link href={`/product/${e.product.id}`}>
                                   {" "}
                                   <CardTitle>{e.product.name}</CardTitle>
@@ -194,23 +201,25 @@ const ManageCart = ({ userData }: { userData: UserFetched | null }) => {
                                 </Link>
                                 <div className="text-lg pl-6 pb-6 font-semibold flex items-center gap-6 r desc max-md:text-sm">
                                   <Button
+                                    size={"sm"}
                                     onClick={() => setquantity(e.product.id, 1)}
-                                    className="bg-green-400"
+                                    className="bg-green-500"
                                   >
                                     <PlusCircle />
                                   </Button>
                                   <Button
+                                    size={"sm"}
                                     onClick={() =>
                                       setquantity(e.product.id, -1)
                                     }
-                                    className="bg-red-400"
+                                    className="bg-red-500"
                                   >
                                     <Minus />
                                   </Button>
                                   <div>
                                     <Button
-                                      className="text-xl"
-                                      variant={"ghost"}
+                                      className="text-xl border-[1px] border-neutral-300"
+                                      variant={"outline"}
                                     >
                                       {e.quantity}
                                     </Button>
@@ -311,7 +320,7 @@ const ManageCart = ({ userData }: { userData: UserFetched | null }) => {
                                     </FormItem>
                                   )}
                                 />{" "}
-                                {!userData?.id ? (
+                                {!!userData?.id ? (
                                   <div className="col-span-2">
                                     <FormField
                                       control={form.control}

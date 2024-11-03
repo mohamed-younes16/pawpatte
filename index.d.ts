@@ -74,7 +74,7 @@ interface product {
   categoryId: string;
   category: category;
   colorId: string;
-  color: color;
+  color: color[];
   price: number;
   description: string;
   createdAt: DateTime;

@@ -26,7 +26,7 @@ const ProductCarousel = ({ productImages }: { productImages: ImageType[] }) => {
   }, [api]);
 
   return (
-    <div className="lg:basis-1/2 max-lg:mx-auto max-w-md  flex flex-col">
+    <div className="lg:basis-1/2  max-lg:mx-auto max-w-[280px]  flex flex-col">
       <Carousel setApi={setApi} className="w-[80%] mx-auto">
         <CarouselContent className="h-[300px]">
           {productImages.map((el) => (

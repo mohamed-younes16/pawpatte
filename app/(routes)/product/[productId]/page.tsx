@@ -21,20 +21,27 @@ const page = async ({
 
   return (
     <div className=" my-16 min-h-[70dvh] max-w-7xl mx-auto">
-      <div className="flex gap-10 max-lg:flex-wrap  max-lg:justify-center">
+      <div className="flex max-lg:px-6 lg:px-12 gap-8 max-lg:flex-col max-lg:items-start  max-lg:justify-center">
         <ProductCarousel productImages={product.images} />
-        <div className=" space-y-4 max-w-lg ">
+        <div className=" space-y-4  md:mx-auto max-w-lg ">
           <h2 className="text-4xl font-bold capitalize">{product.name} </h2>
-          <div className="flex gap-1">
-            {Array.from({ length: 5 }).map((e) => (
-              <>
-                <Star className="text-yellow-600 fill-yellow-400" />
-              </>
-            ))}
+          <div className="flex gap-2">
+            <div className="flex gap-1">
+              {Array.from({ length: 5 }).map((e) => (
+                <>
+                  <Star className="text-yellow-600 fill-yellow-400" />
+                </>
+              ))}
+            </div>
+            <div className=" text-lg font-semibold text-neutral-600 ">
+              {`(4.5/5 , 12 Review)`}
+            </div>
           </div>
 
           <Separator className="bg-neutral-300" />
-          <p className="text-xl min-h-[6rem] text-foreground">{product.description} </p>
+          <p className="text-xl min-h-[6rem] text-foreground">
+            {product.description}{" "}
+          </p>
           <div className="flex text-xl items-center gap-4">
             Colors
             <div className="flex gap-6 ">

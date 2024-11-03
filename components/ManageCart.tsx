@@ -138,7 +138,7 @@ const ManageCart = ({ userData }: { userData: UserFetched | null }) => {
           h-screen overflow-y-scroll xl:w-[50dvw] !max-w-[1000px]"
         >
           <SheetClose
-            className="fixed h-[50px] w-[90dvw] top-0 right-0 
+            className="fixed h-[50px] !max-w-[1000px]  xl:w-[50dvw] w-[90dvw] top-0 right-0 
             flex justify-end backdrop-blur-sm py-2 px-1 4 z-30"
             onClick={() => setSideBarOpen(false)}
           >

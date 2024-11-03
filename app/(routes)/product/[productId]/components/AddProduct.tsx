@@ -16,12 +16,12 @@ const AddProduct = ({ product }: { product: product }) => {
           addProducts(product);
         }}
         className="flexcenter w-full p-6 gap-6 
-          whitespace-nowrap rounded-2xl text-xl"
+          whitespace-nowrap rounded-full text-xl"
       >
         <ShoppingBag />
         Add to Cart
       </Button>
-      { (
+      {
         <Button
           disabled={!isInCart}
           onClick={() => {
@@ -29,12 +29,12 @@ const AddProduct = ({ product }: { product: product }) => {
           }}
           variant={"destructive"}
           className="flexcenter w-full  p-6 gap-6 
-          whitespace-nowrap rounded-2xl text-xl"
+          whitespace-nowrap rounded-full text-xl"
         >
           <ShoppingBag />
           Remove from Cart
         </Button>
-      )}
+      }
     </div>
   );
 };

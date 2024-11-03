@@ -13,7 +13,6 @@ const ProductCarousel = ({ productImages }: { productImages: ImageType[] }) => {
   const [api, setApi] = useState<any>();
   const [current, setCurrent] = useState(0);
 
-
   useEffect(() => {
     if (!api) {
       return;
@@ -27,8 +26,8 @@ const ProductCarousel = ({ productImages }: { productImages: ImageType[] }) => {
 
   return (
     <div className="lg:basis-1/2  max-lg:mx-auto max-w-[280px]  flex flex-col">
-      <Carousel setApi={setApi} className="w-[80%] mx-auto">
-        <CarouselContent className="h-[300px]">
+      <Carousel setApi={setApi} className="w-[80%] mx-auto outline rounded-2xl outline-[2px] outline-neutral-400">
+        <CarouselContent className="h-[300px] ">
           {productImages.map((el) => (
             <CarouselItem key={el.id}>
               <Image
@@ -44,12 +43,12 @@ const ProductCarousel = ({ productImages }: { productImages: ImageType[] }) => {
         <CarouselPrevious />
         <CarouselNext />
       </Carousel>
-      <div className="flex p-6 select-none cursor-pointer overflow-auto gap-6 max-w-2xl">
+      <div className="flex py-6 select-none cursor-pointer overflow-auto gap-6 max-w-2xl">
         {productImages.map((e, i) => (
           <Image
             key={i}
-            className={`rounded-xl object-contain  transition-all
-             select-none h-   () selection:!bg-none  border-4 ${
+            className={`rounded-xl max-lg:h-[100px] object-contain  transition-all
+             select-none selection:!bg-none  border-4 ${
                current == i + 1 && "border-cyan-400"
              }`}
             alt=""

@@ -41,6 +41,8 @@ import {
 } from "@/components/ui/form";
 import { Input } from "./ui/input";
 import { Separator } from "./ui/separator";
+import { checkDiscountCode } from "@/actions";
+import { discount } from "@prisma/client";
 
 const ManageCart = ({ userData }: { userData: UserFetched | null }) => {
   const {
@@ -53,6 +55,7 @@ const ManageCart = ({ userData }: { userData: UserFetched | null }) => {
   } = useCart();
   const searchParams = useSearchParams();
   const [fetching, setIsFetching] = useState(false);
+  const [discount, setDiscount] = useState<discount | null>(null);
   const router = useRouter();
 
   const success = searchParams.get("success");
@@ -83,13 +86,14 @@ const ManageCart = ({ userData }: { userData: UserFetched | null }) => {
     }
   }, [searchParams]);
 
-  const total = () => {
+  const total = (withDis: boolean) => {
     let tot = 0;
     products &&
       products.forEach((e: any) => {
         tot += Number(e.product.price) * e.quantity;
       });
-    return tot;
+
+    return discount && withDis ? tot - (tot * discount.amount) / 100 : tot;
   };
 
   const form = useForm<z.infer<typeof checkoutSchema>>({
@@ -106,18 +110,26 @@ const ManageCart = ({ userData }: { userData: UserFetched | null }) => {
   const onSubmit = form.handleSubmit(
     async (data: z.infer<typeof checkoutSchema>) => {
       setIsFetching(true);
-      const res = await axios.post(`${apiLink}/checkout`, {
+      const res = axios.post(`${apiLink}/checkout`, {
         productsData: products.map((e: productType) => ({
           productId: e.product.id,
           quantity: e.quantity,
         })),
         ownerId: userData?.id || "",
+
         userDetails: {
           ...data,
         },
       });
-      setIsFetching(false);
-      window.location.href = res.data.url;
+      res
+        .then((e) => {
+          setIsFetching(false);
+          window.location.href = e.data.url;
+        })
+        .catch((e) => {
+          setIsFetching(false);
+          toast.error(e.message);
+        });
     }
   );
 
@@ -253,8 +265,22 @@ const ManageCart = ({ userData }: { userData: UserFetched | null }) => {
                         <>
                           <h3>Order Summary</h3>
                           <div className="flex items-center justify-between">
-                            Order Total Price{" "}
-                            <p>{formatedPrice(total() || 0)}</p>
+                            Order Price :
+                            <p>{formatedPrice(total(false) || 0)}</p>
+                          </div>
+                          <div className="flex items-center justify-between">
+                            Discount :
+                            <p>
+                              {formatedPrice(
+                                (discount &&
+                                  (discount?.amount / 100) * total(false)) ||
+                                  0
+                              )}
+                            </p>
+                          </div>
+                          <div className="flex items-center justify-between">
+                            Total Price :
+                            <p>{formatedPrice(total(true) || 0)}</p>
                           </div>
                           <Form {...form}>
                             <form
@@ -330,11 +356,78 @@ const ManageCart = ({ userData }: { userData: UserFetched | null }) => {
                                       render={({ field }) => (
                                         <FormItem className="w-full">
                                           <FormLabel>Discount Code</FormLabel>
-                                          <FormControl>
-                                            <Input
-                                              className="border-neutral-300 border-[1px] "
-                                              {...field}
-                                            />
+                                          <FormControl className="flex ">
+                                            <div className="flex">
+                                              <Input
+                                                className="border-neutral-300 border-[1px] "
+                                                {...field}
+                                              />
+                                              {discount?.id ? (
+                                                <Button
+                                                  type="button"
+                                                  disabled={fetching}
+                                                  className={` transition-all bg-red-600`}
+                                                  onClick={() => {
+                                                    setDiscount(null);
+                                                    form.setValue(
+                                                      "discountCode",
+                                                      "",
+                                                      {
+                                                        shouldDirty: true,
+                                                        shouldTouch: true,
+                                                      }
+                                                    );
+                                                  }}
+                                                >
+                                                  <X />
+                                                </Button>
+                                              ) : (
+                                                <Button
+                                                  type="button"
+                                                  disabled={
+                                                    !field?.value || fetching
+                                                  }
+                                                  className={` transition-all ${
+                                                    !field?.value &&
+                                                    "!opacity-0"
+                                                  }  ${
+                                                    discount?.id &&
+                                                    "bg-green-400"
+                                                  }`}
+                                                  onClick={async () => {
+                                                    setIsFetching(true);
+                                                    const operation =
+                                                      checkDiscountCode(
+                                                        userData?.id,
+                                                        form.watch(
+                                                          "discountCode"
+                                                        ) || ""
+                                                      );
+
+                                                    operation.then(
+                                                      (e: {
+                                                        message: string;
+                                                        discount: discount | null;
+                                                      }) => {
+                                                        setIsFetching(false);
+                                                        setDiscount(e.discount);
+                                                        console.log(e.discount);
+                                                        e.discount?.id
+                                                          ? toast.success(
+                                                              e.message,
+                                                              { invert: true }
+                                                            )
+                                                          : toast.error(
+                                                              e.message
+                                                            );
+                                                      }
+                                                    );
+                                                  }}
+                                                >
+                                                  apply
+                                                </Button>
+                                              )}
+                                            </div>
                                           </FormControl>
                                         </FormItem>
                                       )}

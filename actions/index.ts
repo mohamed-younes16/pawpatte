@@ -70,6 +70,13 @@ export const getDiscountEligible = async (userId: string) => {
     })
   ).json();
 };
+export const checkDiscountCode = async (userId: string, discountCode:string) => {
+  return await (
+    await fetch(`${apiLink}/discount/check?userId=${userId}&discountCode=${discountCode}`, {
+      cache: "no-cache",
+    })
+  ).json();
+};
 export const getProduct = async (id: string) => {
   return await (
     await fetch(`${apiLink}/products/${id}`, {

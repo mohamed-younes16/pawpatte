@@ -7,6 +7,7 @@ import { Search, Home, FileText, HelpCircle } from "lucide-react";
 import Link from "next/link";
 
 import React from "react";
+import { Separator } from "@/components/ui/separator";
 
 export const metadata = {
   title: "pawpatte",
@@ -40,14 +41,11 @@ const page = async ({
                       suggested categories.
                     </p>
                   </div>
-                  <div className="w-full max-w-sm space-y-2"></div>
+                  <Separator className="bg-neutral-300 my-2" />
                   <div className="">
-                    <Link href={"/"}>
+                    <Link className="flex" href={"/"}>
                       {" "}
-                      <Button
-                        className="items-end py-4 px-6"
-                        variant="outline"
-                      >
+                      <Button className="items-end " variant="outline">
                         <Home className="mr-2 h-6 w-6" />
                         Home
                       </Button>

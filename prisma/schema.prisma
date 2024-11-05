@@ -10,23 +10,22 @@ datasource db {
 }
 
 model User {
-  id             String      @id @unique @default(cuid())
+  id             String    @id @unique @default(cuid())
   name           String?
-  email          String?     @unique
+  email          String?   @unique
   emailVerified  DateTime?
   image          String?
   username       String?
   imageUrl       String?
   bio            String?
-  onboarded      Boolean     @default(false)
-  createdAt      DateTime    @default(now())
-  updatedAt      DateTime    @updatedAt
+  onboarded      Boolean   @default(false)
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
   hashedpassword String?
   accounts       Account[]
   sessions       Session[]
-  order          order[]     @relation("order_owner")
-  guranteeList   Guarantee[]
-  discount       discount?   @relation("discountToUser")
+  guranteeList Guarantee[]
+  discount     discount[]  @relation("discountToUser")
 
   @@unique([name])
   @@index([id])
@@ -181,13 +180,14 @@ model product {
 
 model discount {
   id            String   @id @unique @default(cuid())
-  userEmail     String   @unique
-  discountOwner User     @relation("discountToUser", fields: [userEmail], references: [email], onDelete: Cascade)
+  userEmail     String
+  discountOwner User?    @relation("discountToUser", fields: [userEmail], references: [email], onDelete: Cascade)
   amount        Int
   isUsed        Boolean  @default(false)
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
   order         order[]
+  isSpecial     Boolean? @default(false)
 
   @@index([id])
 }
@@ -234,18 +234,17 @@ model order {
   id              String      @id @unique @default(cuid())
   storeId         String
   store           Store       @relation("storetoOrder", fields: [storeId], references: [id])
+ 
   phoneNumber     String      @default("")
-  address         String      @default("")
+  address         String      @default("")  
+  orderOwnerName  String
+  orderOwnerEmail String
   isPaid          Boolean
   items           orderItem[] @relation("ordertoItem")
   createdAt       DateTime    @default(now())
   updatedAt       DateTime    @updatedAt
-  orderOwnerEmail String
-  orderOwnerName  String
   discountCode    String?
   discountUsed    discount?   @relation(fields: [discountCode], references: [id])
-
-  orderOwner User? @relation("order_owner", fields: [orderOwnerEmail], references: [id])
 
   @@index([id])
 }

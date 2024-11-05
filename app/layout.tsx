@@ -11,6 +11,7 @@ import getCurrentUser from "@/actions/getCurrentUser";
 import { getDiscountEligible } from "@/actions";
 import { DiscountDialog } from "@/components/modals/Discount";
 import { discount } from "@prisma/client";
+import CliComp from "@/providers/modalProvider";
 
 const font = Urbanist({ subsets: ["latin"] });
 export const apiLink = process.env.NEXT_PUBLIC_API_URL;
@@ -20,12 +21,12 @@ export default async function RootLayout({
   children: ReactNode;
 }) {
   const user = await getCurrentUser();
-  console.log(user);
+
   const isEligible: { message: string; discount: discount } =
     (await getDiscountEligible(user?.id || "")) || null;
-  const discount = isEligible.discount
-  
-  return(
+  const discount = isEligible.discount;
+
+  return (
     <html suppressHydrationWarning lang="en" className={`${font.className} `}>
       <body>
         <ThemeProvider
@@ -47,12 +48,11 @@ export default async function RootLayout({
             <Analytics />
             <Toaster richColors position="top-center" />
             <NavBar userData={user} />
-            {user ? (
-              <DiscountDialog
-                userId={user?.id}
-                discount={discount}
-              />
-            ) : null}
+            <CliComp>
+              {user ? (
+                <DiscountDialog userId={user?.id} discount={discount} />
+              ) : null}
+            </CliComp>
 
             {children}
           </div>

@@ -48,8 +48,8 @@ export function DiscountDialog({
   });
   const { discountDialogOpen, setDiscountDialogOpen } = useCart();
   const [isSubmitting, setIsSub] = useState(false);
-  const [discountCode, setDiscountCode] = useState<string | null>(
-    discount?.id || null
+  const [discountCode, setDiscountCode] = useState<discount | null>(
+    discount || null
   );
   useEffect(() => {
     setDiscountDialogOpen(!discount?.id);
@@ -67,8 +67,8 @@ export function DiscountDialog({
         email: values.email,
         id: userId,
       });
-
-      setDiscountCode(res.data.discount.id);
+      console.log(res);
+      setDiscountCode(res.data.discount);
       toast.success(res.data.message);
     } catch (e) {
       if (axios.isAxiosError(e)) {
@@ -93,15 +93,13 @@ export function DiscountDialog({
         <DialogDescription>
           {discountCode ? (
             <div className="h-20 flexcenter flex-col">
-              {discountCode && (
-                <>
-                  <p className="text-3xl font-bold text-black">{discount?.amount}% </p>
-                  <h2 className="text-lg font-semibold">Your Discount Code:</h2>
-                  <p className="text-2xl font-semibold text-black">
-                    {discountCode.toLocaleUpperCase().slice(0, 10)}
-                  </p>
-                </>
-              )}
+              <p className="text-3xl font-bold text-black">
+                {discountCode?.amount}%{" "}
+              </p>
+              <h2 className="text-lg font-semibold">Your Discount Code:</h2>
+              <p className="text-2xl font-semibold text-black">
+                {discountCode.id.toLocaleUpperCase().slice(0, 10)}
+              </p>
             </div>
           ) : (
             <>
@@ -156,7 +154,6 @@ export function DiscountDialog({
             </>
           )}
         </DialogDescription>
-   
       </DialogContent>
     </Dialog>
   );

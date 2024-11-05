@@ -71,7 +71,7 @@ const ManageCart = ({ userData }: { userData: UserFetched | null }) => {
       setTimeout(() => {
         delteAllProducts();
         setSideBarOpen(false);
-        router.push("/orders");
+        // router.push("/orders");
       }, 500);
       const current = qs.parse(searchParams.toString());
       let query = { ...current, success: null };

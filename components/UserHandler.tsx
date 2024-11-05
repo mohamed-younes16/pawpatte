@@ -36,13 +36,7 @@ const UserHandler = ({ userData }: { userData: UserFetched | null }) => {
   }, [searchParams]);
   const { discountDialogOpen, setDiscountDialogOpen } = useCart();
   return (
-    <Popover
-      open={popopen}
-      onOpenChange={(e) => {
-        e && setpopopen(true);
-        !e && setpopopen(false);
-      }}
-    >
+    <Popover open={popopen} onOpenChange={setpopopen}>
       <PopoverTrigger asChild>
         <div
           className="flexcenter group/profile relative p-2 transition-all 
@@ -93,6 +87,18 @@ const UserHandler = ({ userData }: { userData: UserFetched | null }) => {
               <div className="w-full flex gap-2">
                 <BadgePercent /> Discount
               </div>
+            </MenuItem>
+            <Separator className="my-2" />
+            <MenuItem onclick={() => {}}>
+              <Link className="w-full flex gap-2" href={"/profile"}>
+                <UserIcon /> Profile
+              </Link>
+            </MenuItem>
+            <Separator className="my-2" />
+            <MenuItem onclick={() => {}}>
+              <Link className="w-full flex gap-2" href={"/profile"}>
+                <UserIcon /> Profile
+              </Link>
             </MenuItem>
           </>
         )}

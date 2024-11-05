@@ -15,9 +15,14 @@ import Guarantee from "./modals/Guarantee";
 import ContactInfo from "./Contact-us";
 import AboutUs from "./modals/AboutUs";
 import SearchBarDialog from "./SearchBar";
+export const animalLinks = [
+  { name: "Dogs", href: "/product/animal/dog" },
+  { name: "Cats", href: "/product/animal/cat" },
 
+  // { name: "Contact", href: "/contact" },
+];
 const NavBar = ({ userData }: { userData: UserFetched | null }) => {
-  const matches: boolean = useMediaQuery("(min-width: 768px)") || false;
+  const matches: boolean = useMediaQuery("(min-width: 1024px)") || false;
   const [categories, setCtagories] = useState(null);
   useEffect(() => {
     (async () => {
@@ -25,49 +30,62 @@ const NavBar = ({ userData }: { userData: UserFetched | null }) => {
       setCtagories(cates);
     })();
   }, []);
-  const links = [
-    { name: "Dogs", href: "/product/animal/dog" },
-    { name: "Cats", href: "/product/animal/cat" },
 
-    // { name: "Contact", href: "/contact" },
-  ];
   return (
     <>
-      <div
-        className="z-30 overflow-y-visible fixed bg-white -200 h-[80px] 
-        transition-all  w-full  mx-auto left-0 rounded-b-lg top-[0px] p-4  sm:hidden"
-      >
-        <div className="flex w-full max-sm:hidden h-full justify-between items-center">
-          {" "}
-          <Link className="h-[65px] w-[65px] relative " href="/">
-            <Image
-              loading="eager"
-              alt="logo"
-              className=" object-contain"
-              fill
-              src={"/assets/logo.png"}
-            />
-          </Link>
+      {!matches && (
+        <div
+          className="z-30 overflow-y-visible fixed bg-white -200 h-[80px] 
+        transition-all  w-full  mx-auto left-0 rounded-b-lg top-[0px] p-4  lg:hidden"
+        >
+          <div className="flex w-full max-sm:hidden h-full justify-between items-center">
+            {" "}
+            <Link className="h-[65px] w-[65px] relative " href="/">
+              <Image
+                loading="eager"
+                alt="logo"
+                className=" object-contain"
+                fill
+                src={"/assets/logo.png"}
+              />
+            </Link>
+            <div className=" w-full flexcenter">
+              <div
+                className="flex items-center
+             gap-8 max-lg:gap-4 justify-start"
+              >
+                {" "}
+                <CliComp>
+                  <Guarantee />
+                  <div className="w-fit">
+                    <AboutUs />
+                  </div>
+                </CliComp>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
+      )}
       <div
-        className="z-30 bg-white overflow-y-visible max-sm:bottom-0 !fixed
-        h-[100px] transition-all w-full max-sm:shadow-inner   sm:w-full left-0 mx-auto sm:left-0 rounded-b-lg sm:top-0 p-4  "
+        className="z-30 bg-white overflow-y-visible max-lg:bottom-0 !fixed
+        h-[100px] transition-all w-full max-sm:shadow-inner   sm:w-full mx-auto left-0 rounded-b-lg lg:top-0 p-4  "
       >
-        <div className="flex h-full  max-sm:!justify-center  justify-between items-center">
-          <div className=" w-full max-md:hidden">
+        <div className="flex h-full max-lg:!justify-center justify-between items-center">
+          <div className=" w-full max-lg:hidden">
             <div
               className="flex items-center
-             gap-8 max-lg:gap-4 justify-start"
+             gap-4 justify-start"
             >
-              {" "}
-              <CliComp>
-                <Guarantee />
-                <div className="w-fit">
-                  <AboutUs />
-                </div>
-              </CliComp>
-              {links.map(({ href, name }, index) => (
+              <div className="min-w-[225px] flexcenter gap-4 ">
+                <CliComp>
+                  <Guarantee />
+                  <div className="w-fit">
+                    <AboutUs />
+                  </div>
+                </CliComp>
+              </div>
+
+              {animalLinks.map(({ href, name }, index) => (
                 <Link
                   key={index}
                   href={href}
@@ -79,13 +97,13 @@ const NavBar = ({ userData }: { userData: UserFetched | null }) => {
               ))}
             </div>
           </div>
-          <Link className=" w-full max-sm:hidden flexcenter relative " href="/">
+          <Link className=" w-full max-lg:hidden flexcenter relative " href="/">
             <Image
               loading="eager"
               alt="logo"
               height={100}
               width={100}
-              className="object-contain h-full w-1/2  max-w-[225px]"
+              className="object-contain h-full min-w-[190px]  max-w-[190px]"
               src={"/assets/LOGO-PAWPATTE-H.png"}
             />
           </Link>
@@ -94,7 +112,7 @@ const NavBar = ({ userData }: { userData: UserFetched | null }) => {
             className="flex lg:w-full gap-[1.25rem]  max-sm:!justify-center  max-lg:flex-row-reverse 
           max-lg:justify-start items-center lg:justify-between"
           >
-            <div className="flexcenter  max-md:justify-end  max-md:w-[56px] gap-6 ">
+            <div className="flexcenter  max-lg:justify-end  max-lg:w-[56px] gap-6 ">
               {!matches && (
                 <MainNav categories={categories} userData={userData} />
               )}
@@ -109,10 +127,10 @@ const NavBar = ({ userData }: { userData: UserFetched | null }) => {
               <CliComp>
                 <ManageCart userData={userData} />
               </CliComp>
-              <div className="md:min-w-[90px] max-md:hidden">
+              <div className="md:min-w-[90px] max-lg:hidden">
                 {matches && <UserHandler userData={userData} />}
               </div>
-              {/* <Button className="max-md:hidden">
+              {/* <Button className="max-lg:hidden">
                 <ModeToggle />
               </Button> */}
             </div>

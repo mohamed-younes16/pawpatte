@@ -64,17 +64,24 @@ export const getAllProducts = async (query: Query) => {
   ).json();
 };
 export const getDiscountEligible = async (userId: string) => {
+
   return await (
     await fetch(`${apiLink}/discount?userId=${userId}`, {
       cache: "no-cache",
     })
   ).json();
 };
-export const checkDiscountCode = async (userId: string, discountCode:string) => {
+export const checkDiscountCode = async (
+  userId: string,
+  discountCode: string
+) => {
   return await (
-    await fetch(`${apiLink}/discount/check?userId=${userId}&discountCode=${discountCode}`, {
-      cache: "no-cache",
-    })
+    await fetch(
+      `${apiLink}/discount/check?userId=${userId}&discountCode=${discountCode}`,
+      {
+        cache: "no-cache",
+      }
+    )
   ).json();
 };
 export const getProduct = async (id: string) => {

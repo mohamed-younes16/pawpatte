@@ -29,20 +29,22 @@ export default function ContactInfo() {
     <Popover>
       <PopoverTrigger asChild>
         <Button variant={"default"} className="w-10 p-3 h-10 rounded-full">
-          <PhoneCall  />
+          <PhoneCall />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-[45dvw] max-w-[550px] ">
+      <PopoverContent className="lg:w-[45dvw] max-lg:w-[75dvw] p-2 max-w-[550px] ">
         {" "}
-        <Card className="w-full max-w-2xl mx-auto">
-          <CardHeader>
-            <CardTitle className="text-3xl font-bold">Contact Us</CardTitle>
+        <Card className="w-full max-w-2xl mx-auto py-2 shadow-sm">
+          <CardHeader className="max-lg:px-4 py-0">
+            <CardTitle className="text-3xl max-lg:text-2xl font-bold">
+              Contact Us
+            </CardTitle>
             <CardDescription>
               Get in touch with our team for any inquiries or support.
             </CardDescription>
           </CardHeader>
-          <CardContent className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <CardContent className="space-y-6 py-0 max-lg:space-y-4">
+            <div className="grid max-lg:text-sm grid-cols-1  md:grid-cols-2 gap-4">
               <ContactMethod
                 icon={<Mail className="h-5 w-5" />}
                 title="Email"
@@ -86,7 +88,7 @@ export default function ContactInfo() {
               />
             </div>
 
-            <div className="pt-6 border-t">
+            <div className="border-t pt-4">
               <h3 className="text-lg font-semibold mb-4">Connect with us</h3>
               <div className="flex space-x-4">
                 <SocialButton
@@ -120,7 +122,7 @@ function ContactMethod({
   content: React.ReactNode;
 }) {
   return (
-    <div className="flex items-start space-x-3">
+    <div className="flex items-center space-x-3">
       <div className="mt-1">{icon}</div>
       <div>
         <h3 className="font-semibold">{title}</h3>

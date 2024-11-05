@@ -10,7 +10,7 @@ const page = async () => {
   const getOrders = async () => {
     "use server";
     const ordersList = await prismadb.order.findMany({
-      where: { orderOwnerId: user?.id },
+      where: { orderOwnerEmail: user?.email || "" },
       include: {
         items: {
           include: {
@@ -27,7 +27,6 @@ const page = async () => {
   const orderPrice = (order) => {
     let tot = 0;
     order.items.forEach((e) => {
-      console.log(e.count);
       tot += Number(e.product.price) * e.count;
     });
 
@@ -36,7 +35,6 @@ const page = async () => {
 
   const formattedorders: orderColumn[] = orders.map((e) => ({
     products: e.items.map((e) => e.product.name).join(" , "),
-
     id: e.id,
     createdAt: format(e.createdAt, "MMMM do , yyyy"),
     phone: e.phoneNumber,

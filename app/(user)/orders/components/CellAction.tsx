@@ -84,7 +84,7 @@ const CellAction = ({ data }: { data: orderColumn }) => {
           <AlertDialogCancel>Cancel</AlertDialogCancel>
           <AlertDialogAction
             onClick={async () => {
-              console.log(`/api/stores/${storeId}/products/${data.id}`);
+           
               const operation = axios.delete(
                 `/api/stores/${storeId}/products/${data.id}`
               );

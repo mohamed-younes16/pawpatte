@@ -38,7 +38,7 @@ const page = async ({
   const sizes = await getAllSizes();
 
   return (
-    <div className=" space-y-8 mb-8 max-w-7xl mx-auto">
+    <div className="px-4 space-y-8 mb-8 max-w-7xl mx-auto">
       {/* <BillBoard link={false} billboard={category.billboard} /> */}
 
       <div className="flex flex-col items-center justify-center gap-10">

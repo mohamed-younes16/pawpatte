@@ -146,7 +146,7 @@ const ManageCart = ({ userData }: { userData: UserFetched | null }) => {
         </SheetTrigger>
         <SheetContent
           side={"right"}
-          className="bg-neutral-200 pt-0  w-[90dvw] z-[9999] 
+          className="bg-neutral-200 pt-0 max-lg:px-2  w-[95dvw] z-[9999] 
           h-screen overflow-y-scroll xl:w-[50dvw] !max-w-[1000px]"
         >
           <SheetClose
@@ -183,7 +183,7 @@ const ManageCart = ({ userData }: { userData: UserFetched | null }) => {
             <div className="flex gap-6 flex-col max-lg:flex-wrap">
               {products.length > 0 ? (
                 <>
-                  <div className=" space-y-4 w-full border-neutral-300 border-[2px] bg-neutral-100 rounded-lg p-4  overflow-scroll">
+                  <div className=" space-y-4 max-lg:p-3 w-full border-neutral-300 border-[2px] bg-neutral-100 rounded-lg p-4  overflow-scroll">
                     {products.map(
                       (e: { product: product; quantity: number }, i) => (
                         <>
@@ -202,7 +202,7 @@ const ManageCart = ({ userData }: { userData: UserFetched | null }) => {
                                 />
                               </div>
 
-                              <CardHeader className="basis-2/3 py-0">
+                              <CardHeader className="basis-2/3 py-0 max-lg:px-3">
                                 <Link href={`/product/${e.product.id}`}>
                                   {" "}
                                   <CardTitle>{e.product.name}</CardTitle>
@@ -242,8 +242,9 @@ const ManageCart = ({ userData }: { userData: UserFetched | null }) => {
                               </CardHeader>
                             </div>
                             <Button
-                              className="absolute top-2 py-0 px-4 right-2 z-30"
+                              className="absolute top-2 py-0  right-2 z-30"
                               onClick={() => deleteProduct(e.product)}
+                              size={"icon"}
                             >
                               <X className="max-md:h-4 z-30 max-md:w-4 md-h-6 md:h-6" />
                             </Button>
@@ -264,11 +265,11 @@ const ManageCart = ({ userData }: { userData: UserFetched | null }) => {
                       products.length > 0 ? (
                         <>
                           <h3>Order Summary</h3>
-                          <div className="flex items-center justify-between">
+                          <div className="flex items-center max-lg:text-base justify-between">
                             Order Price :
                             <p>{formatedPrice(total(false) || 0)}</p>
                           </div>
-                          <div className="flex items-center justify-between">
+                          <div className="flex items-center max-lg:text-base  justify-between">
                             Discount :
                             <p>
                               {formatedPrice(
@@ -278,7 +279,7 @@ const ManageCart = ({ userData }: { userData: UserFetched | null }) => {
                               )}
                             </p>
                           </div>
-                          <div className="flex items-center justify-between">
+                          <div className="flex items-center max-lg:text-base  justify-between">
                             Total Price :
                             <p>{formatedPrice(total(true) || 0)}</p>
                           </div>
@@ -287,12 +288,12 @@ const ManageCart = ({ userData }: { userData: UserFetched | null }) => {
                               onSubmit={onSubmit}
                               className="space-y-4  w-full"
                             >
-                              <div className="grid grid-cols-2 gap-4">
+                              <div className="grid grid-cols-2 max-md:grid-cols-1 gap-4">
                                 <FormField
                                   control={form.control}
                                   name="name"
                                   render={({ field }) => (
-                                    <FormItem className="w-full">
+                                    <FormItem className="w-full max-md:col-span-2">
                                       <FormLabel>Name</FormLabel>
                                       <FormControl>
                                         <Input
@@ -307,7 +308,7 @@ const ManageCart = ({ userData }: { userData: UserFetched | null }) => {
                                   control={form.control}
                                   name="email"
                                   render={({ field }) => (
-                                    <FormItem className="w-full">
+                                    <FormItem className="w-full  max-md:col-span-2">
                                       <FormLabel>Email</FormLabel>
                                       <FormControl>
                                         <Input
@@ -322,7 +323,7 @@ const ManageCart = ({ userData }: { userData: UserFetched | null }) => {
                                   control={form.control}
                                   name="phoneNumber"
                                   render={({ field }) => (
-                                    <FormItem className="w-full">
+                                    <FormItem className="w-full max-md:col-span-2">
                                       <FormLabel>Phone Number</FormLabel>
                                       <FormControl>
                                         <Input
@@ -337,7 +338,7 @@ const ManageCart = ({ userData }: { userData: UserFetched | null }) => {
                                   control={form.control}
                                   name="address"
                                   render={({ field }) => (
-                                    <FormItem className="w-full">
+                                    <FormItem className="w-full max-md:col-span-2">
                                       <FormLabel>Your full address</FormLabel>
                                       <FormControl>
                                         <Input
@@ -435,6 +436,7 @@ const ManageCart = ({ userData }: { userData: UserFetched | null }) => {
                                   </div>
                                 ) : null}
                               </div>
+                            
                               <Button
                                 disabled={fetching}
                                 className="w-full py-6 relative flexcenter gap-4 text-2xl rounded-3xl"

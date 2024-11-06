@@ -99,10 +99,10 @@ const ManageCart = ({ userData }: { userData: UserFetched | null }) => {
   const form = useForm<z.infer<typeof checkoutSchema>>({
     resolver: zodResolver(checkoutSchema),
     defaultValues: {
-      address: "",
-      email: "",
-      name: "",
-      phoneNumber: "",
+      address: userData?.address || "",
+      email: userData?.email || "",
+      name: userData?.name || "",
+      phoneNumber: userData?.phoneNumber || "",
       discountCode: "",
     },
   });
@@ -146,11 +146,11 @@ const ManageCart = ({ userData }: { userData: UserFetched | null }) => {
         </SheetTrigger>
         <SheetContent
           side={"right"}
-          className="bg-neutral-200 pt-0 max-lg:px-2  w-[95dvw] z-[9999] 
-          h-screen overflow-y-scroll xl:w-[50dvw] !max-w-[1000px]"
+          className="bg-neutral-200 pt-0 max-lg:px-2 xl:w-[50dvw] !max-w-[1000px]   w-[95dvw] z-[9999] 
+          h-screen overflow-y-scroll "
         >
           <SheetClose
-            className="fixed h-[50px] !max-w-[1000px]  xl:w-[50dvw] w-[90dvw] top-0 right-0 
+            className="fixed h-[50px]  xl:w-[50dvw] !max-w-[1000px]  w-[95dvw]  top-0 right-0 
             flex justify-end backdrop-blur-sm py-2 px-1 4 z-30"
             onClick={() => setSideBarOpen(false)}
           >
@@ -213,16 +213,16 @@ const ManageCart = ({ userData }: { userData: UserFetched | null }) => {
                                     {e.product.description}
                                   </CardDescription>{" "}
                                 </Link>
-                                <div className="text-lg pl-6 pb-6 font-semibold flex items-center gap-6 r desc max-md:text-sm">
+                                <div className="text-lg pl-6 pb-6 font-semibold !flex items-center gap-2  desc max-lg:text-sm">
                                   <Button
-                                    size={"sm"}
+                                    size={"icon"}
                                     onClick={() => setquantity(e.product.id, 1)}
                                     className="bg-green-500"
                                   >
                                     <PlusCircle />
                                   </Button>
                                   <Button
-                                    size={"sm"}
+                                    size={"icon"}
                                     onClick={() =>
                                       setquantity(e.product.id, -1)
                                     }
@@ -232,6 +232,7 @@ const ManageCart = ({ userData }: { userData: UserFetched | null }) => {
                                   </Button>
                                   <div>
                                     <Button
+                                      size={"icon"}
                                       className="text-xl border-[1px] border-neutral-300"
                                       variant={"outline"}
                                     >
@@ -289,67 +290,73 @@ const ManageCart = ({ userData }: { userData: UserFetched | null }) => {
                               className="space-y-4  w-full"
                             >
                               <div className="grid grid-cols-2 max-md:grid-cols-1 gap-4">
-                                <FormField
-                                  control={form.control}
-                                  name="name"
-                                  render={({ field }) => (
-                                    <FormItem className="w-full max-md:col-span-2">
-                                      <FormLabel>Name</FormLabel>
-                                      <FormControl>
-                                        <Input
-                                          className="border-neutral-300 border-[1px] "
-                                          {...field}
-                                        />
-                                      </FormControl>
-                                    </FormItem>
-                                  )}
-                                />
-                                <FormField
-                                  control={form.control}
-                                  name="email"
-                                  render={({ field }) => (
-                                    <FormItem className="w-full  max-md:col-span-2">
-                                      <FormLabel>Email</FormLabel>
-                                      <FormControl>
-                                        <Input
-                                          className="border-neutral-300 border-[1px] "
-                                          {...field}
-                                        />
-                                      </FormControl>
-                                    </FormItem>
-                                  )}
-                                />
-                                <FormField
-                                  control={form.control}
-                                  name="phoneNumber"
-                                  render={({ field }) => (
-                                    <FormItem className="w-full max-md:col-span-2">
-                                      <FormLabel>Phone Number</FormLabel>
-                                      <FormControl>
-                                        <Input
-                                          className="border-neutral-300 border-[1px] "
-                                          {...field}
-                                        />
-                                      </FormControl>
-                                    </FormItem>
-                                  )}
-                                />{" "}
-                                <FormField
-                                  control={form.control}
-                                  name="address"
-                                  render={({ field }) => (
-                                    <FormItem className="w-full max-md:col-span-2">
-                                      <FormLabel>Your full address</FormLabel>
-                                      <FormControl>
-                                        <Input
-                                          className="border-neutral-300 border-[1px] "
-                                          {...field}
-                                        />
-                                      </FormControl>
-                                    </FormItem>
-                                  )}
-                                />{" "}
-                                {!!userData?.id ? (
+                                {!userData?.id ? (
+                                  <>
+                                    {" "}
+                                    <FormField
+                                      control={form.control}
+                                      name="name"
+                                      render={({ field }) => (
+                                        <FormItem className="w-full max-md:col-span-2">
+                                          <FormLabel>Name</FormLabel>
+                                          <FormControl>
+                                            <Input
+                                              className="border-neutral-300 border-[1px] "
+                                              {...field}
+                                            />
+                                          </FormControl>
+                                        </FormItem>
+                                      )}
+                                    />
+                                    <FormField
+                                      control={form.control}
+                                      name="email"
+                                      render={({ field }) => (
+                                        <FormItem className="w-full  max-md:col-span-2">
+                                          <FormLabel>Email</FormLabel>
+                                          <FormControl>
+                                            <Input
+                                              className="border-neutral-300 border-[1px] "
+                                              {...field}
+                                            />
+                                          </FormControl>
+                                        </FormItem>
+                                      )}
+                                    />
+                                    <FormField
+                                      control={form.control}
+                                      name="phoneNumber"
+                                      render={({ field }) => (
+                                        <FormItem className="w-full max-md:col-span-2">
+                                          <FormLabel>Phone Number</FormLabel>
+                                          <FormControl>
+                                            <Input
+                                              className="border-neutral-300 border-[1px] "
+                                              {...field}
+                                            />
+                                          </FormControl>
+                                        </FormItem>
+                                      )}
+                                    />{" "}
+                                    <FormField
+                                      control={form.control}
+                                      name="address"
+                                      render={({ field }) => (
+                                        <FormItem className="w-full max-md:col-span-2">
+                                          <FormLabel>
+                                            Your full address
+                                          </FormLabel>
+                                          <FormControl>
+                                            <Input
+                                              className="border-neutral-300 border-[1px] "
+                                              {...field}
+                                            />
+                                          </FormControl>
+                                        </FormItem>
+                                      )}
+                                    />
+                                  </>
+                                ) : (
                                   <div className="col-span-2">
                                     <FormField
                                       control={form.control}
@@ -434,9 +441,9 @@ const ManageCart = ({ userData }: { userData: UserFetched | null }) => {
                                       )}
                                     />
                                   </div>
-                                ) : null}
+                                )}
                               </div>
-                            
+
                               <Button
                                 disabled={fetching}
                                 className="w-full py-6 relative flexcenter gap-4 text-2xl rounded-3xl"

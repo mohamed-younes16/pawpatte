@@ -25,27 +25,17 @@ import axios from "axios";
 
 import { useEffect, useState } from "react";
 import { apiLink } from "@/app/layout";
-import { discount } from "@prisma/client";
+import { discount, User } from "@prisma/client";
 import { Separator } from "../ui/separator";
 import { useCart } from "@/hooks/store";
 
-const discountSchema = z.object({
-  email: z.string().email(),
-});
-
 export function DiscountDialog({
   discount,
-  userId,
+  user,
 }: {
   discount: discount | null;
-  userId: string;
+  user: UserFetched;
 }) {
-  const form = useForm<z.infer<typeof discountSchema>>({
-    resolver: zodResolver(discountSchema),
-    defaultValues: {
-      email: "",
-    },
-  });
   const { discountDialogOpen, setDiscountDialogOpen } = useCart();
   const [isSubmitting, setIsSub] = useState(false);
   const [discountCode, setDiscountCode] = useState<discount | null>(
@@ -55,20 +45,21 @@ export function DiscountDialog({
     setDiscountDialogOpen(!discount?.id);
   }, []);
 
-  useEffect(() => {
-    setIsSub(form.formState.isSubmitting);
-  }, [form.formState]);
-
-  async function onSubmit(values: z.infer<typeof discountSchema>) {
+  async function fetchCode() {
+    let data;
     try {
       setIsSub(true);
-
       const res = await axios.patch(`${apiLink}/discount`, {
-        email: values.email,
-        id: userId,
+        email: user?.email,
+        id: user?.id,
       });
-      console.log(res);
+      data = {
+        discountAmount: res.data.discount.amount,
+        promoCode: res.data.discount.id.slice(0, 10).toUpperCase(),
+        email: user.email,
+      };
       setDiscountCode(res.data.discount);
+
       toast.success(res.data.message);
     } catch (e) {
       if (axios.isAxiosError(e)) {
@@ -79,6 +70,7 @@ export function DiscountDialog({
     } finally {
       setIsSub(false);
     }
+    return data;
   }
 
   return (
@@ -107,50 +99,40 @@ export function DiscountDialog({
                 You’re eligible for a discount. Enter your email to receive your
                 discount code.
               </p>
-              <Form {...form}>
-                <form
-                  onSubmit={form.handleSubmit(onSubmit)}
-                  className="space-y-8"
+
+              {
+                <Button
+                  type="submit"
+                  disabled={isSubmitting}
+                  onClick={async () => {
+                    const data = await fetchCode();
+
+                    if (data) {
+                      const adding = axios.post(`${apiLink}/send`, data);
+                      adding
+                        .then((e) => {
+                          toast.success(e.data.message);
+                        })
+                        .catch((e) => {
+                          console.log(e);
+                          toast.error("Error Happend");
+                        });
+                    }
+                  }}
+                  className={`${
+                    isSubmitting ? "bg-zinc-500" : ""
+                  } flexcenter mx-auto my-4
+                   gap-2`}
                 >
-                  <FormField
-                    control={form.control}
-                    name="email"
-                    disabled={isSubmitting}
-                    render={({ field }) => (
-                      <FormItem className="flex flex-col">
-                        <FormLabel>Your E-mail</FormLabel>
-                        <FormControl>
-                          <Input
-                            className="account-form_input"
-                            type="text"
-                            {...field}
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <div>
-                    {form.formState.isDirty && (
-                      <Button
-                        type="submit"
-                        disabled={isSubmitting}
-                        className={`${
-                          isSubmitting ? "bg-zinc-500" : ""
-                        } flexcenter gap-2`}
-                      >
-                        Submit
-                        {isSubmitting && (
-                          <div
-                            className="w-4 h-4 border-2 border-white
+                  Get your code
+                  {isSubmitting && (
+                    <div
+                      className="w-4 h-4 border-2 border-white
                              dark:border-black !border-t-transparent rounded-full animate-spin"
-                          />
-                        )}
-                      </Button>
-                    )}
-                  </div>
-                </form>
-              </Form>
+                    />
+                  )}
+                </Button>
+              }
             </>
           )}
         </DialogDescription>

@@ -10,22 +10,21 @@ datasource db {
 }
 
 model User {
-  id             String    @id @unique @default(cuid())
+  id             String      @id @unique @default(cuid())
   name           String?
-  email          String?   @unique
+  email          String?     @unique
   emailVerified  DateTime?
   image          String?
-  username       String?
-  imageUrl       String?
-  bio            String?
-  onboarded      Boolean   @default(false)
-  createdAt      DateTime  @default(now())
-  updatedAt      DateTime  @updatedAt
+  phoneNumber    String?
+  address        String?
+  onboarded      Boolean     @default(false)
+  createdAt      DateTime    @default(now())
+  updatedAt      DateTime    @updatedAt
   hashedpassword String?
   accounts       Account[]
   sessions       Session[]
-  guranteeList Guarantee[]
-  discount     discount[]  @relation("discountToUser")
+  guranteeList   Guarantee[]
+  discount       discount[]  @relation("discountToUser")
 
   @@unique([name])
   @@index([id])
@@ -206,9 +205,8 @@ model Guarantee {
   productName  String
   serialNumber String
   notes        String @default("")
-
-  userEmail String
-  costumer  User   @relation(fields: [userEmail], references: [email], onDelete: Cascade)
+  userEmail    String
+  costumer     User   @relation(fields: [userEmail], references: [email], onDelete: Cascade)
 
   productId String
   product   product @relation(fields: [productId], references: [id], onDelete: Cascade)
@@ -234,9 +232,8 @@ model order {
   id              String      @id @unique @default(cuid())
   storeId         String
   store           Store       @relation("storetoOrder", fields: [storeId], references: [id])
- 
   phoneNumber     String      @default("")
-  address         String      @default("")  
+  address         String      @default("")
   orderOwnerName  String
   orderOwnerEmail String
   isPaid          Boolean

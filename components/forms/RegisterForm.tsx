@@ -16,7 +16,6 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
-import "@uploadthing/react/styles.css";
 import axios from "axios";
 import { Loader2 } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -34,6 +33,8 @@ const RegisterForm = ({ type }: { type: "login" | "register" }) => {
           confirm: "",
           email: "",
           password: "",
+          phoneNumber: "",
+          address: "",
         }
       : {
           email: "",
@@ -188,24 +189,68 @@ const RegisterForm = ({ type }: { type: "login" | "register" }) => {
               )}
             />
             {type === "register" && (
-              <FormField
-                control={form.control}
-                name="confirm"
-                render={({ field }) => (
-                  <FormItem className=" peer flex flex-col   ">
-                    <FormLabel>Confirm Password</FormLabel>
+              <>
+                <FormField
+                  control={form.control}
+                  name="confirm"
+                  render={({ field }) => (
+                    <FormItem className=" peer flex flex-col   ">
+                      <FormLabel>Confirm Password</FormLabel>
 
-                    <FormControl className="">
-                      <Input
-                        className={`${errors[field.name] && "border-red-500"}`}
-                        type="password"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+                      <FormControl className="">
+                        <Input
+                          className={`${
+                            errors[field.name] && "border-red-500"
+                          }`}
+                          type="password"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="phoneNumber"
+                  render={({ field }) => (
+                    <FormItem className=" peer flex flex-col   ">
+                      <FormLabel>Phone Number</FormLabel>
+
+                      <FormControl>
+                        <Input
+                          className={`${
+                            errors[field.name] && "border-red-500"
+                          }`}
+                          type="text"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="address"
+                  render={({ field }) => (
+                    <FormItem className=" peer flex flex-col   ">
+                      <FormLabel>Address</FormLabel>
+
+                      <FormControl className="">
+                        <Input
+                          className={`${
+                            errors[field.name] && "border-red-500"
+                          }`}
+                          type="text"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </>
             )}
           </div>
           {

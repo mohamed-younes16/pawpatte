@@ -50,7 +50,7 @@ export default async function RootLayout({
             <NavBar userData={user} />
             <CliComp>
               {user ? (
-                <DiscountDialog userId={user?.id} discount={discount} />
+                <DiscountDialog   user={user} discount={discount} />
               ) : null}
             </CliComp>
 

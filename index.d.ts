@@ -117,9 +117,8 @@ interface UserFetched {
   id: string;
   name: string | null;
   email: string | null;
-  username: string | null;
-  imageUrl: string | null;
-  bio: string | null;
+  address: string | null;
+  phoneNumber: string | null;
   onboarded: boolean;
   createdAt: Date;
 }

@@ -1,5 +1,3 @@
-import "@uploadthing/react/styles.css";
-
 import { HomeIcon, LucideLogOut } from "lucide-react";
 import Link from "next/link";
 import {
@@ -17,23 +15,24 @@ import getCurrentUser from "@/actions/getCurrentUser";
 import CliComp from "@/providers/modalProvider";
 import UserLoginAlert from "@/components/UserLoginAlert";
 
-
-
 export const Heading = ({
-  title="",
-  description="",
+  title = "",
+  description = "",
 }: {
   title: string;
   description: string;
 }) => {
   return (
     <div className="w-full">
-      <h2 className=" text-3xl max-md:text-2xl max-sm:text-xl font-bold">{title} </h2>
-      <p className="text-muted-foreground max-md:text-base text-lg">{description} </p>
+      <h2 className=" text-3xl max-md:text-2xl max-sm:text-xl font-bold">
+        {title}{" "}
+      </h2>
+      <p className="text-muted-foreground max-md:text-base text-lg">
+        {description}{" "}
+      </p>
     </div>
   );
 };
-
 
 const Page = async () => {
   const CurrentUserData = await getCurrentUser();
@@ -48,16 +47,17 @@ const Page = async () => {
     bg-cover"
         >
           <div className=" w-[80dvw]  p-4 rounded-2xl  mt-6 border-neutral-600 border backdrop-blur-md ">
-            <div className="flex items-center  gap-6">
-              <div className=" flexcenter  gap-4 ">
-                <TooltipComp hoverText="Log-out">
-                  <SignOutButton>
-                    <LucideLogOut className="h-10 w-10 " />
-                  </SignOutButton>
-                </TooltipComp>
-              </div>
+            <TooltipProvider>
+              {" "}
+              <div className="flex items-start mb-4 justify-start gap-6">
+                <div className="w-fit">
+                  <TooltipComp hoverText="Log-out">
+                    <SignOutButton>
+                      <LucideLogOut className="h-10 w-10 " />
+                    </SignOutButton>
+                  </TooltipComp>
+                </div>
 
-              <TooltipProvider>
                 <Tooltip delayDuration={200}>
                   <TooltipTrigger>
                     <Link href={"/"} aria-label="redirect to profile page ">
@@ -68,8 +68,9 @@ const Page = async () => {
                     <p>Main Page</p>
                   </TooltipContent>
                 </Tooltip>
-              </TooltipProvider>
-            </div>
+              </div>
+            </TooltipProvider>
+
             <div className="min-h-[60dvh]">
               <CliComp>
                 <ProfileForm userData={CurrentUserData} />
@@ -78,7 +79,7 @@ const Page = async () => {
           </div>
         </div>
       ) : (
-        <UserLoginAlert/>
+        <UserLoginAlert />
       )}
     </>
   );

@@ -1,4 +1,3 @@
-import { withAccelerate } from '@prisma/extension-accelerate';
 import { getServerSession } from "next-auth";
 import { authOpts } from "@/app/api/auth/[...nextauth]/route";
 import prismadb from "@/lib/prismabd";
@@ -20,14 +19,11 @@ export default async function getCurrentUser() {
       select: {
         email: true,
         name: true,
-        username: true,
-        imageUrl: true,
+        address: true,
+        phoneNumber: true,
         onboarded: true,
-        bio: true,
         id: true,
         createdAt: true,
-      },cacheStrategy:{
-        ttl:60
       }
     })
 

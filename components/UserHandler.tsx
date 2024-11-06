@@ -41,27 +41,10 @@ const UserHandler = ({ userData }: { userData: UserFetched | null }) => {
         <div
           className="flexcenter group/profile relative p-2 transition-all 
                   shadow-[inset_0px_3px_6px_0px_hsl(var(--foreground)_/_0.2)]
-                  border-foreground/20 font-semibold border max-md:w-full  hover:shadow-[inset_0px_3px_6px_0px_hsl(var(--foreground)_/_0)] cursor-pointer  rounded-full py-2 gap-4"
+                  border-foreground/20 font-semibold border max-lg:w-full  hover:shadow-[inset_0px_3px_6px_0px_hsl(var(--foreground)_/_0)] cursor-pointer  rounded-full py-2 gap-4"
         >
           <Menu className="h-6 transition-all  group-hover/profile:text-main" />
 
-          {userData?.imageUrl ? (
-            <div className=" relative overflow-hidden rounded-full max-h-[35px]  h-[35px] max-w-[35px] w-[35px] ">
-              <ImageContainer
-                alt=""
-                src={userData?.imageUrl}
-                className="object-cover"
-              />
-            </div>
-          ) : (
-            <Image
-              alt=""
-              src={"/assets/placeholder.jpg"}
-              className="rounded-full  min-h-[30px] min-w-[30px]  "
-              height={30}
-              width={30}
-            />
-          )}
         </div>
       </PopoverTrigger>
       <PopoverContent className="-translate-x-4  p-2">
@@ -88,18 +71,8 @@ const UserHandler = ({ userData }: { userData: UserFetched | null }) => {
                 <BadgePercent /> Discount
               </div>
             </MenuItem>
-            <Separator className="my-2" />
-            <MenuItem onclick={() => {}}>
-              <Link className="w-full flex gap-2" href={"/profile"}>
-                <UserIcon /> Profile
-              </Link>
-            </MenuItem>
-            <Separator className="my-2" />
-            <MenuItem onclick={() => {}}>
-              <Link className="w-full flex gap-2" href={"/profile"}>
-                <UserIcon /> Profile
-              </Link>
-            </MenuItem>
+
+          
           </>
         )}
         <Separator className={`my-2 md:hidden  ${!userData && "hidden"} `} />

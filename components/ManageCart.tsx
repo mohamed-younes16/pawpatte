@@ -101,6 +101,7 @@ const ManageCart = ({ userData }: { userData: UserFetched | null }) => {
     defaultValues: {
       address: userData?.address || "",
       email: userData?.email || "",
+      confirmEmail: "",
       name: userData?.name || "",
       phoneNumber: userData?.phoneNumber || "",
       discountCode: "",
@@ -325,6 +326,21 @@ const ManageCart = ({ userData }: { userData: UserFetched | null }) => {
                                     />
                                     <FormField
                                       control={form.control}
+                                      name="confirmEmail"
+                                      render={({ field }) => (
+                                        <FormItem className="w-full  max-md:col-span-2">
+                                          <FormLabel>confirm Email</FormLabel>
+                                          <FormControl>
+                                            <Input
+                                              className="border-neutral-300 border-[1px] "
+                                              {...field}
+                                            />
+                                          </FormControl>
+                                        </FormItem>
+                                      )}
+                                    />
+                                    <FormField
+                                      control={form.control}
                                       name="phoneNumber"
                                       render={({ field }) => (
                                         <FormItem className="w-full max-md:col-span-2">
@@ -445,7 +461,7 @@ const ManageCart = ({ userData }: { userData: UserFetched | null }) => {
                               </div>
 
                               <Button
-                                disabled={fetching}
+                                disabled={fetching || !form.formState.isValid}
                                 className="w-full py-6 relative flexcenter gap-4 text-2xl rounded-3xl"
                               >
                                 {fetching && (

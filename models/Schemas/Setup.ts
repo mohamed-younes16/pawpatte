@@ -28,13 +28,19 @@ export const SetupSchema = z.object({
   phoneNumber: z.string().min(1),
   address: z.string().min(1),
 });
-export const checkoutSchema = z.object({
-  name: z.string().min(4),
-  email: z.string().email(),
-  address: z.string().min(1),
-  phoneNumber: z.string().min(1),
-  discountCode: z.string().default("").optional(),
-});
+export const checkoutSchema = z
+  .object({
+    name: z.string().min(4),
+    email: z.string().email(),
+    confirmEmail: z.string().email(),
+    address: z.string().min(1),
+    phoneNumber: z.string().min(1),
+    discountCode: z.string().default("").optional(),
+  })
+  .refine((data) => data.email === data.confirmEmail, {
+    message: "email don't match",
+    path: ["confirmEmail"],
+  });
 export const GuaranteeSchema = z.object({
   fullName: z.string().min(1, "Full name is required"),
   email: z.string().email("Invalid email address"),

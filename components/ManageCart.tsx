@@ -151,7 +151,7 @@ const ManageCart = ({ userData }: { userData: UserFetched | null }) => {
         >
           <SheetClose
             className="fixed h-[50px]  xl:w-[50dvw] !max-w-[1000px]  w-[95dvw]  top-0 right-0 
-            flex justify-end backdrop-blur-sm py-2 px-1 4 z-30"
+            flex justify-end backdrop-blur-sm py-2 px-1 4 z-50"
             onClick={() => setSideBarOpen(false)}
           >
             <Button className="text-sm" size={"sm"}>

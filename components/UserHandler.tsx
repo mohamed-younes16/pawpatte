@@ -20,8 +20,7 @@ import { Separator } from "./ui/separator";
 import SignOutButton from "./inputs/SignOutButton";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { ModeToggle } from "./ui/themeButton";
-import ImageContainer from "./ImageContainer";
+
 import CliComp from "@/providers/modalProvider";
 
 const UserHandler = ({ userData }: { userData: UserFetched | null }) => {
@@ -44,7 +43,6 @@ const UserHandler = ({ userData }: { userData: UserFetched | null }) => {
                   border-foreground/20 font-semibold border max-lg:w-full  hover:shadow-[inset_0px_3px_6px_0px_hsl(var(--foreground)_/_0)] cursor-pointer  rounded-full py-2 gap-4"
         >
           <Menu className="h-6 transition-all  group-hover/profile:text-main" />
-
         </div>
       </PopoverTrigger>
       <PopoverContent className="-translate-x-4  p-2">
@@ -71,18 +69,9 @@ const UserHandler = ({ userData }: { userData: UserFetched | null }) => {
                 <BadgePercent /> Discount
               </div>
             </MenuItem>
-
-          
           </>
         )}
-        <Separator className={`my-2 md:hidden  ${!userData && "hidden"} `} />
-        <MenuItem className="md:hidden">
-          <div className="flex gap-2 items-center">
-            <ModeToggle>
-              <div className="ml-2 text-lg">Toggle Theme</div>
-            </ModeToggle>
-          </div>
-        </MenuItem>
+
         <Separator className={`my-2 ${!userData && "hidden"}`} />
 
         {userData && (

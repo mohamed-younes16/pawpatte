@@ -23,6 +23,7 @@ export const animalLinks = [
 ];
 const NavBar = ({ userData }: { userData: UserFetched | null }) => {
   const matches: boolean = useMediaQuery("(min-width: 1024px)") || false;
+  console.log(!matches);
   const [categories, setCtagories] = useState(null);
   useEffect(() => {
     (async () => {
@@ -38,7 +39,7 @@ const NavBar = ({ userData }: { userData: UserFetched | null }) => {
           className="z-30 overflow-y-visible fixed bg-white -200 h-[80px] 
         transition-all  w-full  mx-auto left-0 rounded-b-lg top-[0px] p-4  lg:hidden"
         >
-          <div className="flex w-full max-sm:hidden h-full justify-between items-center">
+          <div className="flex w-full  h-full justify-between items-center">
             {" "}
             <Link className="h-[65px] w-[65px] relative " href="/">
               <Image

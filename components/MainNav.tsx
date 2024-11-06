@@ -21,9 +21,11 @@ import { animalLinks } from "./NavBar";
 const MainNav = ({
   categories,
   userData,
+  displayDiscount,
 }: {
   categories?: category[] | null;
   userData: UserFetched | null;
+  displayDiscount: boolean;
 }) => {
   const { isSheetOpen, setIsSheetOpen } = useCart();
   const pathname = usePathname();
@@ -99,7 +101,7 @@ const MainNav = ({
             </div>
 
             <Separator />
-            <UserHandler userData={userData} />
+            <UserHandler displayDiscount={displayDiscount} userData={userData} />
           </SheetContent>
         </Sheet>
       </div>

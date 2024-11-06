@@ -5,7 +5,7 @@ export const RegisterSchema = z
     name: z.string().min(4).max(16),
     email: z.string().min(4).email(),
     phoneNumber: z.string().min(4).max(16),
-    address: z.string().min(4).max(16),
+    address: z.string().default("").optional(),
     password: z.string().min(4).max(14),
     confirm: z.string().min(4).max(14),
   })

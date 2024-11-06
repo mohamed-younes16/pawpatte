@@ -235,7 +235,7 @@ const RegisterForm = ({ type }: { type: "login" | "register" }) => {
                   name="address"
                   render={({ field }) => (
                     <FormItem className=" peer flex flex-col   ">
-                      <FormLabel>Address</FormLabel>
+                      <FormLabel>Address (optional)</FormLabel>
 
                       <FormControl className="">
                         <Input

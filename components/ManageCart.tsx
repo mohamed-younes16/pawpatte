@@ -354,23 +354,6 @@ const ManageCart = ({ userData }: { userData: UserFetched | null }) => {
                                         </FormItem>
                                       )}
                                     />{" "}
-                                    <FormField
-                                      control={form.control}
-                                      name="address"
-                                      render={({ field }) => (
-                                        <FormItem className="w-full max-md:col-span-2">
-                                          <FormLabel>
-                                            Your full address
-                                          </FormLabel>
-                                          <FormControl>
-                                            <Input
-                                              className="border-neutral-300 border-[1px] "
-                                              {...field}
-                                            />
-                                          </FormControl>
-                                        </FormItem>
-                                      )}
-                                    />
                                   </>
                                 ) : (
                                   <div className="col-span-2">
@@ -458,6 +441,63 @@ const ManageCart = ({ userData }: { userData: UserFetched | null }) => {
                                     />
                                   </div>
                                 )}
+                                <FormField
+                                  control={form.control}
+                                  name="address"
+                                  render={({ field }) => (
+                                    <FormItem className="w-full max-md:col-span-2">
+                                      <FormLabel>Your full address</FormLabel>
+                                      <FormControl>
+                                        <div className="flex gap-2">
+                                          <Input
+                                            className="border-neutral-300 border-[1px] "
+                                            {...field}
+                                          />
+                                          {userData && (
+                                            <Button
+                                              type="button"
+                                              disabled={
+                                                !field?.value || fetching
+                                              }
+                                              className={` transition-all   ${
+                                                discount?.id && "bg-green-400"
+                                              }`}
+                                              onClick={async () => {
+                                                setIsFetching(true);
+                                                const operation = axios.post(
+                                                  `/api/authentication`,
+                                                  {
+                                                    name: userData?.name,
+                                                    address: field.value,
+                                                    phoneNumber:
+                                                      userData?.phoneNumber,
+                                                  }
+                                                );
+
+                                                operation
+                                                  .then(() => {
+                                                    toast.success(
+                                                      "set successfully"
+                                                    );
+                                                  })
+                                                  .catch(() => {
+                                                    toast.error(
+                                                      "error happend"
+                                                    );
+                                                  })
+                                                  .finally(() =>
+                                                    setIsFetching(false)
+                                                  );
+                                              }}
+                                            >
+                                              set as default
+                                            </Button>
+                                          )}
+                                        </div>
+                                      </FormControl>
+                                    </FormItem>
+                                  )}
+                                />
                               </div>
 
                               <Button

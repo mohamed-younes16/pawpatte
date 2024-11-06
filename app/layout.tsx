@@ -22,10 +22,10 @@ export default async function RootLayout({
 }) {
   const user = await getCurrentUser();
 
-  const isEligible: { message: string; discount: discount } =
+  const isEligible: { message: string; discount: discount; isUsed: boolean } =
     (await getDiscountEligible(user?.id || "")) || null;
   const discount = isEligible.discount;
-
+  const displayDiscount = !!(user && !isEligible.isUsed);
   return (
     <html suppressHydrationWarning lang="en" className={`${font.className} `}>
       <body>
@@ -47,10 +47,10 @@ export default async function RootLayout({
           >
             <Analytics />
             <Toaster richColors position="top-center" />
-            <NavBar userData={user} />
+            <NavBar displayDiscount={displayDiscount} userData={user} />
             <CliComp>
-              {user ? (
-                <DiscountDialog   user={user} discount={discount} />
+              {displayDiscount ? (
+                <DiscountDialog user={user} discount={discount} />
               ) : null}
             </CliComp>
 

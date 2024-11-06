@@ -21,9 +21,15 @@ export const animalLinks = [
 
   // { name: "Contact", href: "/contact" },
 ];
-const NavBar = ({ userData }: { userData: UserFetched | null }) => {
+const NavBar = ({
+  userData,
+  displayDiscount,
+}: {
+  userData: UserFetched | null;
+  displayDiscount: boolean;
+}) => {
   const matches: boolean = useMediaQuery("(min-width: 1024px)") || false;
-  console.log(!matches);
+
   const [categories, setCtagories] = useState(null);
   useEffect(() => {
     (async () => {
@@ -115,7 +121,11 @@ const NavBar = ({ userData }: { userData: UserFetched | null }) => {
           >
             <div className="flexcenter  max-lg:justify-end  max-lg:w-[56px] gap-6 ">
               {!matches && (
-                <MainNav categories={categories} userData={userData} />
+                <MainNav
+                  displayDiscount={displayDiscount}
+                  categories={categories}
+                  userData={userData}
+                />
               )}
             </div>
             <div
@@ -129,7 +139,12 @@ const NavBar = ({ userData }: { userData: UserFetched | null }) => {
                 <ManageCart userData={userData} />
               </CliComp>
               <div className="md:min-w-[90px] max-lg:hidden">
-                {matches && <UserHandler userData={userData} />}
+                {matches && (
+                  <UserHandler
+                    displayDiscount={displayDiscount}
+                    userData={userData}
+                  />
+                )}
               </div>
               {/* <Button className="max-lg:hidden">
                 <ModeToggle />

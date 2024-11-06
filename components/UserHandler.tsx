@@ -23,7 +23,13 @@ import Link from "next/link";
 
 import CliComp from "@/providers/modalProvider";
 
-const UserHandler = ({ userData }: { userData: UserFetched | null }) => {
+const UserHandler = ({
+  userData,
+  displayDiscount = false,
+}: {
+  userData: UserFetched | null;
+  displayDiscount: boolean;
+}) => {
   const searchParams = useSearchParams();
   const [open, setOpen] = useState<"login" | "register" | null>(
     searchParams.get("redirected") === "true" ? "login" : null
@@ -59,16 +65,20 @@ const UserHandler = ({ userData }: { userData: UserFetched | null }) => {
                 <UserIcon /> Profile
               </Link>
             </MenuItem>
-            <Separator className="my-2" />
-            <MenuItem
-              onclick={() => {
-                setDiscountDialogOpen(!discountDialogOpen);
-              }}
-            >
-              <div className="w-full flex gap-2">
-                <BadgePercent /> Discount
-              </div>
-            </MenuItem>
+            {displayDiscount && (
+              <>
+                <Separator className="my-2" />{" "}
+                <MenuItem
+                  onclick={() => {
+                    setDiscountDialogOpen(!discountDialogOpen);
+                  }}
+                >
+                  <div className="w-full flex gap-2">
+                    <BadgePercent /> Discount
+                  </div>
+                </MenuItem>
+              </>
+            )}
           </>
         )}
 

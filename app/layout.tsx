@@ -6,7 +6,7 @@ import "./globals.css";
 import { Toaster } from "sonner";
 import { Urbanist } from "next/font/google";
 import NavBar from "@/components/NavBar";
-import Footer from "@/components/Footer";
+
 import getCurrentUser from "@/actions/getCurrentUser";
 import { getDiscountEligible } from "@/actions";
 import { DiscountDialog } from "@/components/modals/Discount";
@@ -39,9 +39,9 @@ export default async function RootLayout({
             className="  min-h-screen 
             dark:bg-[url(/assets/magicdark.svg)]
              transition-all 
-     pb-0 bg-[ul(/assets/b1.png)]
-     bg-white
-       bg-fixed max-sm:pb-[110px]   
+     pb-0 bg-[url(/assets/waves.svg)]
+     
+       bg-cover max-sm:pb-[110px]   
      pt-[100px]    
   "
           >

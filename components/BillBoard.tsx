@@ -37,8 +37,8 @@ const BillBoard = ({ billboards }: { billboards: billBoard[] }) => {
 
   return (
     <div
-      className="backdrop-blur-lg  bg-cover bg-[#ffffff00] 
-     max-w-[95vw] h-[75dvh] max-md:h-[50dvh] overflow-hidden relative mx-auto rounded-xl "
+      className="backdrop-blur-lg  bg-cover bg-[#ffffff00] !m-0
+     max-w-[95vw] h-[75dvh] max-md:h-[50dvh]  relative overflow-hidden rounded-xl "
     >
       <Carousel
         setApi={setApi}
@@ -48,7 +48,7 @@ const BillBoard = ({ billboards }: { billboards: billBoard[] }) => {
         ]}
         className="h-full relative w-full mx-auto"
       >
-        <CarouselContent className=" h-[70dvh] select-none max-md:h-[50dvh] ">
+        <CarouselContent className=" h-[70dvh] -ml-0 select-none max-md:h-[50dvh] ">
           {billboards.map((billboard, i) => {
             return (
               <CarouselItem key={i} className="pl-0">

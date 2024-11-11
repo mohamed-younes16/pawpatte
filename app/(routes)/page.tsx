@@ -15,11 +15,16 @@ export default async function Home() {
   const billBoards: billBoard[] = await getBillBoards();
 
   const categories = await getAllcategories();
-  const products = await getAllProducts({ isFeatured: true, });
+  const products = await getAllProducts({ isFeatured: true });
 
   return (
-    <div className="min-h-screen px-6">
-      {billBoards && <BillBoard billboards={billBoards} />}
+    <div className="min-h-screen ">
+      {billBoards && (
+        <div className=" w-full max-w-[95vw] mx-auto">
+          {" "}
+          <BillBoard billboards={billBoards} />
+        </div>
+      )}
       <Features />
       {categories && <CatgoriesCarousel categories={categories} />}
       <div className="min-h-[50vh] max-w-7xl mx-auto  ">

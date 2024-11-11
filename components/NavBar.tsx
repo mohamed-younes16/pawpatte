@@ -43,7 +43,7 @@ const NavBar = ({
       {!matches && (
         <div
           className="z-30 overflow-y-visible fixed bg-white -200 h-[80px] 
-        transition-all  w-full  mx-auto left-0 rounded-b-lg top-[0px] p-4  lg:hidden"
+        transition-all  w-full  mx-auto left-0 rounded-b-lg top-[0px]   lg:hidden"
         >
           <div className="flex w-full  h-full justify-between items-center">
             {" "}
@@ -74,85 +74,89 @@ const NavBar = ({
         </div>
       )}
       <div
-        className="z-30 bg-white overflow-y-visible max-lg:bottom-0 !fixed
-        h-[100px] transition-all w-full max-sm:shadow-inner   sm:w-full mx-auto left-0 rounded-b-lg lg:top-0 p-4  "
+        className="z-30 px-[2.5dvw] bg-white overflow-y-visible max-lg:bottom-0 !fixed
+        h-[100px] transition-all w-full max-sm:shadow-inner  sm:w-full mx-auto left-0 rounded-b-lg lg:top-0   "
       >
-        <div className="flex h-full max-lg:!justify-center justify-between items-center">
-          <div className=" w-full max-lg:hidden">
-            <div
-              className="flex items-center
+
+          <div className="flex h-full max-lg:!justify-center justify-between items-center">
+            <div className=" w-full max-lg:hidden">
+              <div
+                className="flex items-center
              gap-4 justify-start"
-            >
-              <div className="min-w-[225px] flexcenter gap-4 ">
-                <CliComp>
-                  <Guarantee />
-                  <div className="w-fit">
-                    <AboutUs />
-                  </div>
-                </CliComp>
-              </div>
+              >
+                <div className="min-w-[225px] flexcenter gap-4 ">
+                  <CliComp>
+                    <Guarantee />
+                    <div className="w-fit">
+                      <AboutUs />
+                    </div>
+                  </CliComp>
+                </div>
 
-              {animalLinks.map(({ href, name }, index) => (
-                <Link
-                  key={index}
-                  href={href}
-                  className="text-lg font-semibold hover:text-second
+                {animalLinks.map(({ href, name }, index) => (
+                  <Link
+                    key={index}
+                    href={href}
+                    className="text-lg font-semibold hover:text-second
                    transition-all text-primary block whitespace-nowrap "
-                >
-                  <Button>{name}</Button>
-                </Link>
-              ))}
+                  >
+                    <Button>{name}</Button>
+                  </Link>
+                ))}
+              </div>
             </div>
-          </div>
-          <Link className=" w-full max-lg:hidden flexcenter relative " href="/">
-            <Image
-              loading="eager"
-              alt="logo"
-              height={100}
-              width={100}
-              className="object-contain h-full min-w-[190px]  max-w-[190px]"
-              src={"/assets/LOGO-PAWPATTE-H.png"}
-            />
-          </Link>
-
-          <div
-            className="flex lg:w-full gap-[1.25rem]  max-sm:!justify-center  max-lg:flex-row-reverse 
-          max-lg:justify-start items-center lg:justify-between"
-          >
-            <div className="flexcenter  max-lg:justify-end  max-lg:w-[56px] gap-6 ">
-              {!matches && (
-                <MainNav
-                  displayDiscount={displayDiscount}
-                  categories={categories}
-                  userData={userData}
-                />
-              )}
-            </div>
-            <div
-              className="flex justify-start
-             items-center gap-3 md:min-w-[250px]"
+            <Link
+              className=" w-full max-lg:hidden flexcenter relative "
+              href="/"
             >
-              <SearchBarDialog />
-              <ContactInfo />
+              <Image
+                loading="eager"
+                alt="logo"
+                height={100}
+                width={100}
+                className="object-contain h-full min-w-[190px]  max-w-[190px]"
+                src={"/assets/LOGO-PAWPATTE-H.png"}
+              />
+            </Link>
 
-              <CliComp>
-                <ManageCart userData={userData} />
-              </CliComp>
-              <div className="md:min-w-[90px] max-lg:hidden">
-                {matches && (
-                  <UserHandler
+            <div
+              className="flex lg:w-full gap-[1.25rem]  max-sm:!justify-center  max-lg:flex-row-reverse 
+          max-lg:justify-start items-center lg:justify-between"
+            >
+              <div className="flexcenter  max-lg:justify-end  max-lg:w-[56px] gap-6 ">
+                {!matches && (
+                  <MainNav
                     displayDiscount={displayDiscount}
+                    categories={categories}
                     userData={userData}
                   />
                 )}
               </div>
-              {/* <Button className="max-lg:hidden">
+              <div
+                className="flex justify-start
+             items-center gap-3 md:min-w-[250px]"
+              >
+                <SearchBarDialog />
+                <ContactInfo />
+
+                <CliComp>
+                  <ManageCart userData={userData} />
+                </CliComp>
+                <div className="md:min-w-[90px] max-lg:hidden">
+                  {matches && (
+                    <UserHandler
+                      displayDiscount={displayDiscount}
+                      userData={userData}
+                    />
+                  )}
+                </div>
+                {/* <Button className="max-lg:hidden">
                 <ModeToggle />
               </Button> */}
+              </div>
             </div>
           </div>
         </div>
-      </div>{" "}
     </>
   );
 };

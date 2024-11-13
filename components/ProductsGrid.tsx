@@ -34,7 +34,7 @@ const ProductsGrid = ({
 }) => {
   const { addProducts } = useCart();
   return (
-    <div className=" w-full  ">
+    <div className=" w-full ">
       <div className="flex justify-start max-md:w-fit flex-wrap mt-6 gap-6 ">
         {items.map((e, i) => (
           <m.div

@@ -1,19 +1,18 @@
 "use client";
 import { motion as m } from "framer-motion";
 
-import Link from "next/link";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
 } from "@/components/ui/carousel";
-import Image from "next/image";
+
 import Autoplay from "embla-carousel-autoplay";
 import { EmblaOptionsType } from "embla-carousel";
-import { Button } from "./ui/button";
+
 import { useEffect, useState } from "react";
+import { Button } from "./ui/button";
+import Link from "next/link";
 
 const BillBoard = ({ billboards }: { billboards: billBoard[] }) => {
   const OPTIONS: EmblaOptionsType = {
@@ -34,6 +33,11 @@ const BillBoard = ({ billboards }: { billboards: billBoard[] }) => {
       setCurrent(api.selectedScrollSnap() + 1);
     });
   }, [api]);
+  // const navigate = () => {
+  //   console.log("fffffffffff");
+  //   console.log(document?.getElementById("products"));
+  //   document?.getElementById("products")?.scrollTo({ behavior: "smooth" });
+  // };
 
   return (
     <div
@@ -44,11 +48,11 @@ const BillBoard = ({ billboards }: { billboards: billBoard[] }) => {
         setApi={setApi}
         opts={OPTIONS}
         plugins={[
-          Autoplay({ delay: 5000, active: true, stopOnInteraction: false }),
+          Autoplay({ delay: 50000, active: true, stopOnInteraction: false }),
         ]}
         className="h-full relative w-full mx-auto"
       >
-        <CarouselContent className=" h-[70dvh] -ml-0 select-none max-md:h-[50dvh] ">
+        <CarouselContent className=" h-[70dvh] -ml-0 select-none max-md:h-[45dvh] ">
           {billboards.map((billboard, i) => {
             return (
               <CarouselItem key={i} className="pl-0">
@@ -72,7 +76,10 @@ const BillBoard = ({ billboards }: { billboards: billBoard[] }) => {
                       <source src={billboard.imageUrl} type="video/mp4" />
                     </video>
 
-                    {/* <div className="w-full h-[20%] absolute left-0 bottom-0  z-40 flexcenter">
+                    <Link
+                      href={"#products"}
+                      className="w-full h-[20%] absolute left-0 bottom-0  z-40 flexcenter"
+                    >
                       <Button
                         className="hover:bg-second 
                       font-semibold text-2xl max-md:px-5 max-md:py-4 max-md:text-xl px-9 rounded-full py-8"
@@ -80,7 +87,7 @@ const BillBoard = ({ billboards }: { billboards: billBoard[] }) => {
                       >
                         shop now
                       </Button>
-                    </div> */}
+                    </Link>
                   </div>
                 ) : (
                   <div
@@ -125,7 +132,10 @@ const BillBoard = ({ billboards }: { billboards: billBoard[] }) => {
                       >
                         {billboard.text}
                       </m.p>
-                      {/* <div className="w-full h-[20%] absolute left-0 bottom-0  flexcenter">
+                      <Link
+                        href={"#products"}
+                        className="w-full h-[20%] absolute left-0 bottom-0  flexcenter"
+                      >
                         <Button
                           className="hover:bg-second 
                       font-semibold text-2xl max-md:px-5 max-md:py-4 max-md:text-xl px-9 rounded-full py-8"
@@ -133,7 +143,7 @@ const BillBoard = ({ billboards }: { billboards: billBoard[] }) => {
                         >
                           shop now
                         </Button>
-                      </div> */}
+                      </Link>
                     </div>
                     <div className="absolute w-full h-full top-0 left-0">
                       <m.img
@@ -148,13 +158,13 @@ const BillBoard = ({ billboards }: { billboards: billBoard[] }) => {
           })}
         </CarouselContent>
         <div
-          className="bottom-0 left-0 h-[5vh] absolute
+          className="bottom-0 left-0 h-[5dvh] absolute
           bg-black/10 flexcenter gap-6  w-full z-50"
         >
           {billboards.map((_, i) => (
             <div
               key={i}
-              className={`object-contain cursor-pointer h-5 w-5 rounded-full  transition-all
+              className={`object-contain cursor-pointer h-4 w-4 rounded-full  transition-all
              select-none h-   () selection:!bg-none ${
                current == i + 1 ? "bg-second " : " bg-white "
              }`}

@@ -65,7 +65,7 @@ const NavBar = ({
                 <CliComp>
                   <Guarantee />
                   <div className="w-fit">
-                    <AboutUs />
+                    <AboutUs  />
                   </div>
                 </CliComp>
               </div>
@@ -100,7 +100,7 @@ const NavBar = ({
                     className="text-lg font-semibold hover:text-second
                    transition-all text-primary block whitespace-nowrap "
                   >
-                    <Button>{name}</Button>
+                    <Button className=" w-[75px] ">{name}</Button>
                   </Link>
                 ))}
               </div>

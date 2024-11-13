@@ -46,7 +46,6 @@ export const GuaranteeSchema = z.object({
   email: z.string().email("Invalid email address"),
   phone: z.string().min(1, "Phone number is required"),
   address: z.string().min(1, "Address is required"),
-  productName: z.string().min(1, "Product name is required"),
   serialNumber: z.string().min(1, "Serial number is required"),
   notes: z.string().default(""),
 });

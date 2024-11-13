@@ -24,12 +24,11 @@ export const authOpts: AuthOptions = {
         password: { label: "password", type: "text" },
       },
       async authorize(cred) {
-
         if (!cred?.email || !cred?.password) {
           throw new Error("no Creds____________________");
         }
 
-        const user = await prismadb.user.findUnique({
+        const user = await prismadb.user.findFirst({
           where: { email: cred.email },
         });
 

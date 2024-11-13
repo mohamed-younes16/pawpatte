@@ -23,10 +23,13 @@ const CatgoriesCarousel = ({ categories }: { categories: category[] }) => {
     <Carousel
       opts={OPTIONS}
       plugins={[plugin.current]}
-      className="max-w-[65dvw] mx-auto   max-h-[150px] my-12"
+      className="mx-auto max-w-[330px]   max-md:max-w-[240px] md:min-w-[330px]   max-h-[150px] my-12"
     >
       <CarouselContent className="min-w-[6rem]">
         {categories
+          .concat(categories)
+          .concat(categories)
+          .concat(categories)
           .map((e, index) => (
             <CarouselItem
               key={index}

@@ -4,14 +4,11 @@ import {
   FacebookIcon,
   InstagramIcon,
   Linkedin,
-  MailOpenIcon,
   TwitterIcon,
 } from "lucide-react";
 import Image from "next/image";
-import { Button } from "./ui/button";
-import { Input } from "./ui/input";
-import { motion as m } from "framer-motion";
 import Link from "next/link";
+import Faq from "./Faq";
 
 const Footer = () => {
 
@@ -19,28 +16,29 @@ const Footer = () => {
     {
       name: "facebook",
       icon: <FacebookIcon />,
-      link: "https://www.facebook.com/profile.php?id=100070339100609",
+      link: "https://www.facebook.com/",
     },
     {
       name: "Instagram",
       icon: <InstagramIcon />,
-      link: "https://www.instagram.com/younesmohamed_77",
+      link: "https://www.instagram.com/",
     },
     {
       name: "Twitter",
       icon: <TwitterIcon />,
-      link: "https://twitter.com/younesmed_77",
+      link: "https://twitter.com/",
     },
     {
       name: "LinkedIn",
       icon: <Linkedin />,
-      link: "https://twitter.com/younesmed_77",
+      link: "https://twitter.com",
     },
   ];
 
   return (
-    <div className="max-w-7xl space-y-10 mt-8 mx-auto">
-      <div className="relative p-32 mb-14 max-md:p-6 !text-white  w-full rounded-2xl ">
+    <div className="max-w-7xl space-y-10 mt-16 mx-auto">
+        <Faq/>
+      {/* <div className="relative p-32 mb-14 max-md:p-6 !text-white  w-full rounded-2xl ">
         <Image
           alt=""
           fill
@@ -80,7 +78,7 @@ const Footer = () => {
             </Button>
           </div>
         </div>
-      </div>
+      </div> */}
       {/* <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 lg:grid-cols-4">
         {servicesData.map((e, i) => (
           <m.div

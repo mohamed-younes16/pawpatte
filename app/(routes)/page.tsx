@@ -27,7 +27,7 @@ export default async function Home() {
       )}
       <Features />
       {categories && <CatgoriesCarousel categories={categories} />}
-      <div className="min-h-[50vh] max-w-7xl mx-auto  ">
+      <div id="products" className="min-h-[50vh]  px-6  max-w-7xl mx-auto  ">
         <Heading
           icon={<ShoppingCart className="text-second" />}
           className="mt-6 text-second"

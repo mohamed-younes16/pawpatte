@@ -37,7 +37,6 @@ const Guarantee = () => {
       email: "",
       phone: "",
       address: "",
-      productName: "",
 
       serialNumber: "",
       issueDescription: "",
@@ -164,21 +163,7 @@ const Guarantee = () => {
               <Separator className="w-full bg-neutral-400" />
               {/* Product Information Section */}
               <div className="space-y-4">
-                <h2 className="text-xl font-semibold">Product Information</h2>
-                <FormField
-                  control={form.control}
-                  name="productName"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="font-semibold flex ">
-                        Product Name
-                      </FormLabel>
-                      <FormControl>
-                        <Input placeholder="Product Name" {...field} />
-                      </FormControl>
-                    </FormItem>
-                  )}
-                />
+             
 
                 <FormField
                   control={form.control}

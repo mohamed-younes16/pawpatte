@@ -287,14 +287,14 @@ const RegisterForm = ({ type }: { type: "login" | "register" }) => {
           onClick={async () => {
             signIn("google");
           }}
-          icon={<FcGoogle className="h-10 w-8" />}
+          icon={<FcGoogle className="h-6 w-6" />}
           label="continue with google"
         />
         <LoginButton
           onClick={async () => {
             signIn("github");
           }}
-          icon={<FaGithub className="h-10 w-8" />}
+          icon={<FaGithub className="h-6 w-6" />}
           label="continue with Github"
         />
       </div>

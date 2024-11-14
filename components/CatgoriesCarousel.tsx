@@ -26,29 +26,25 @@ const CatgoriesCarousel = ({ categories }: { categories: category[] }) => {
       className="mx-auto max-w-[330px]   max-md:max-w-[240px] md:min-w-[330px]   max-h-[150px] my-12"
     >
       <CarouselContent className="min-w-[6rem]">
-        {categories
-          .concat(categories)
-          .concat(categories)
-          .concat(categories)
-          .map((e, index) => (
-            <CarouselItem
-              key={index}
-              className="max-w-[110px]   max-md:max-w-[80px] md:min-w-[110px]   "
-            >
-              <Link href={`/categories/${e.id}`}>
-                <Card className=" h-[110px] max-md:h-[70px] bg-neutral-200 flexcenter  max-md:max-w-[80px] flex-col gap-2 p-2  relative">
-                  <Image
-                    height={50}
-                    width={50}
-                    className="object-contain"
-                    src={e.logo}
-                    alt={`${e.name} logo`}
-                  />
-                  <CardTitle className="text-sm">{e.name} </CardTitle>
-                </Card>
-              </Link>
-            </CarouselItem>
-          ))}
+        {categories.map((e, index) => (
+          <CarouselItem
+            key={index}
+            className="max-w-[110px]   max-md:max-w-[80px] md:min-w-[110px]   "
+          >
+            <Link href={`/categories/${e.id}`}>
+              <Card className=" h-[110px] max-md:h-[70px] bg-neutral-200 flexcenter  max-md:max-w-[80px] flex-col gap-2 p-2  relative">
+                <Image
+                  height={50}
+                  width={50}
+                  className="object-contain"
+                  src={e.logo}
+                  alt={`${e.name} logo`}
+                />
+                <CardTitle className="text-sm">{e.name} </CardTitle>
+              </Card>
+            </Link>
+          </CarouselItem>
+        ))}
       </CarouselContent>
       <CarouselPrevious />
       <CarouselNext />

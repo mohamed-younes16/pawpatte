@@ -54,7 +54,7 @@ const MainNav = ({
               </Link>
             </div>
 
-            <div className=" flex-1 w-full">
+            <div className="w-full">
               <SheetHeader className="mb-4 px-3">
                 <SheetTitle>Check Some Categories</SheetTitle>
                 <SheetDescription>
@@ -62,7 +62,7 @@ const MainNav = ({
                 </SheetDescription>
               </SheetHeader>
               <Separator className=" bg-neutral-500 my-3" />
-              <div className="px-3 min-h-[60dvh]">
+              <div className="px-3 min-h-[50dvh]">
                 {categories?.map((e, i) => (
                   <>
                     <div
@@ -100,8 +100,15 @@ const MainNav = ({
               </div>
             </div>
 
-            <Separator />
-            <UserHandler displayDiscount={displayDiscount} userData={userData} />
+           
+            <div className="w-full py-2">
+               <Separator className="my-2" />
+              <UserHandler
+                displayDiscount={displayDiscount}
+                userData={userData}
+              />
+            </div>
+        
           </SheetContent>
         </Sheet>
       </div>

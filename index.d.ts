@@ -83,6 +83,7 @@ interface product {
   isFeatured: boolean;
   images: ImageType[];
   orderItems: orderItem[];
+  stars: number;
 }
 
 interface ImageType {

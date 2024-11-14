@@ -11,7 +11,7 @@ const LoginButton = ({
   onClick: () => void;
 }) => {
   return (
-    <Button onClick={onClick} className=" w-full flexcenter py-6 ">
+    <Button onClick={onClick} size={"sm"} className=" w-full flexcenter py-5 ">
       {icon}
       <p className="flex-1 ">{label}</p>
     </Button>

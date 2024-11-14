@@ -20,14 +20,14 @@ export default async function Home() {
   return (
     <div className="min-h-screen ">
       {billBoards && (
-        <div className=" w-full max-w-[95vw] mx-auto">
+        <div className=" w-full max-w-[95dvw] mx-auto">
           {" "}
           <BillBoard billboards={billBoards} />
         </div>
       )}
       <Features />
       {categories && <CatgoriesCarousel categories={categories} />}
-      <div id="products" className="min-h-[50vh]  px-6  max-w-7xl mx-auto  ">
+      <div id="products" className="min-h-[50vh] max-md:px-[5dvw] px-6  max-w-7xl mx-auto  ">
         <Heading
           icon={<ShoppingCart className="text-second" />}
           className="mt-6 text-second"

@@ -45,7 +45,7 @@ const UserHandler = ({
     <Popover open={popopen} onOpenChange={setpopopen}>
       <PopoverTrigger asChild>
         <div
-          className="flexcenter group/profile relative p-2 transition-all 
+          className="flexcenter px-2 group/profile relative p-2 transition-all 
                   shadow-[inset_0px_3px_6px_0px_hsl(var(--foreground)_/_0.2)]
                   border-foreground/20 font-semibold border max-lg:w-full  hover:shadow-[inset_0px_3px_6px_0px_hsl(var(--foreground)_/_0)] cursor-pointer  rounded-full py-2 gap-2"
         >

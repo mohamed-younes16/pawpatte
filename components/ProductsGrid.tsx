@@ -35,7 +35,7 @@ const ProductsGrid = ({
   const { addProducts } = useCart();
   return (
     <div className=" w-full ">
-      <div className="flex justify-start max-md:w-fit flex-wrap mt-6 gap-6 ">
+      <div className="flex justify-start max-md:w-fit max-md:justify-center flex-wrap mt-6 gap-6 ">
         {items.map((e, i) => (
           <m.div
             key={e.id}
@@ -51,7 +51,7 @@ const ProductsGrid = ({
             initial={{ opacity: 0, y: 50 }}
           >
             <Card
-              className={`w-[350px] bg-neutral-200 overflow-hidden ${
+              className={`md:w-[350px] max-w-[350px] max-md:w-[90dvw] bg-neutral-200 overflow-hidden ${
                 search ? "max-md:w-[150px]" : ""
               }`}
             >
@@ -71,15 +71,15 @@ const ProductsGrid = ({
                         </div>
                       </DialogTrigger>
                       <DialogContent
-                        className=" max-md:w-[100dvw] 
-                      bg-neutral-200 h-[80dvh]  p-6  md:w-[60dvw] max-w-4xl"
+                        className=" max-md:w-[80dvw] 
+                      bg-neutral-200 h-[80dvh] rounded-lg max-md:h-[50dvh]  p-8  md:w-[60dvw] max-w-4xl"
                       >
                         <Carousel className="w-full mx-auto">
-                          <CarouselContent className="ml-0">
+                          <CarouselContent className="!ml-0 !pl-0">
                             {e.images.map((el) => (
                               <CarouselItem
-                                className="flexcenter ml-1  max-md:w-[80%]
-                                 border-neutral-300 border-[1px] rounded-2xl max-md:min-h-[45dvh] h-[70dvh]"
+                                className="flexcenter  max-md:w-[80%]
+                                 border-neutral-300 !ml-0 !pl-0 border-[1px] rounded-2xl max-md:h-[45dvh] h-[70dvh]"
                                 key={el.id}
                               >
                                 <Image
@@ -92,8 +92,8 @@ const ProductsGrid = ({
                               </CarouselItem>
                             ))}
                           </CarouselContent>
-                          <CarouselPrevious />
-                          <CarouselNext />
+                          <CarouselPrevious className="left-0 w-8 h-8 -translate-x-full " />
+                          <CarouselNext   className="right-0 w-8 h-8 translate-x-full "/>
                         </Carousel>
                       </DialogContent>
                     </Dialog>

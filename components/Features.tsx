@@ -31,22 +31,26 @@ const Features = () => {
       {servicesData.map((e, i) => (
         <m.div
           key={i}
-          initial={{ opacity: 0, x: -50 }}
+          initial={{ opacity: 0, x: -10 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{
             type: "spring",
             stiffness: 260,
             damping: 20,
-            delay: i * 0.3,
-            duration: 0.3,
+            delay: i * 0.5,
+            duration: 0.5,
           }}
           viewport={{ once: true }}
-          className="flexcenter px-2 items-center min-w-[275px] py-7 cursor-pointer rounded-2xl sm:max-w-fit  backdrop-blur-md 
-        hover:translate-x-1 duration-150 hover:-translate-y-1 max-sm:w-full border-[1px] bg-neutral-100 border-neutral-300 hover:shadow-2xl gap-4"
+          className="flexcenter px-2 items-center 
+          min-w-[275px]  max-w-[275px] py-4 cursor-pointer 
+          rounded-2xl sm:max-w-fit  backdrop-blur-md 
+        hover:translate-x-1 duration-150
+         hover:-translate-y-1 max-sm:w-full border-[1px]
+          bg-neutral-100 border-neutral-300 hover:shadow-2xl gap-3"
         >
           <Image
             src={e.icon}
-            className=" object-contain h-[45px] w-[45px]"
+            className=" object-contain h-[35px] w-[35px]"
             height={50}
             width={50}
             alt={e.desc}

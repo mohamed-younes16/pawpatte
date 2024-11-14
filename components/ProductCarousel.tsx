@@ -18,7 +18,7 @@ const ProductCarousel = ({ productImages }: { productImages: ImageType[] }) => {
       return;
     }
     setCurrent(api.selectedScrollSnap() + 1);
-
+    
     api.on("select", () => {
       setCurrent(api.selectedScrollSnap() + 1);
     });

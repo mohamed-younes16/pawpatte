@@ -23,7 +23,8 @@ const LoginModal = ({ setOpen, open }: AuthenticationModalType) => {
       <DialogTrigger className=" text-start w-full">
         <MenuItem label="login" onclick={() => {}} />
       </DialogTrigger>
-      <DialogContent className=" max-sm:px-4">
+      <DialogContent className=" max-sm:px-4  max-w-lg 
+      lg:!w-[80vw] lg:max-w-[900px] h-[80vh] overflow-scroll">
         <div className="flexcenter mb-6 font-semibold text-xl">Login</div>
         <h1 className="text-3xl max-md:text-xl font-bold">login to Store</h1>
         <div className="text-foreground/80">login to Account</div>

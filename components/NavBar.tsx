@@ -45,7 +45,7 @@ const NavBar = ({
           className="z-30 overflow-y-visible fixed bg-white -200 h-[80px] 
         transition-all  w-full  mx-auto left-0 rounded-b-lg top-[0px]   lg:hidden"
         >
-          <div className="flex w-full  h-full justify-between items-center">
+          <div className="flex w-full px-2 gap-4  h-full justify-between items-center">
             {" "}
             <Link className="h-[65px] w-[65px] relative " href="/">
               <Image
@@ -56,7 +56,7 @@ const NavBar = ({
                 src={"/assets/logo.png"}
               />
             </Link>
-            <div className=" w-full flexcenter">
+            <div className=" w-full flex items-center ">
               <div
                 className="flex items-center
              gap-8 max-lg:gap-4 justify-start"

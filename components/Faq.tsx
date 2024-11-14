@@ -26,7 +26,7 @@ const Faq = () => {
     {
       question: "Do you offer delivery to my area?",
       answer:
-        "We provide delivery across Algeria, with options for local and national shipping depending on your location.",
+        "We provide delivery everywhere, with options for local and national shipping depending on your location.",
     },
     {
       question: "What should I do if I receive a damaged product?",

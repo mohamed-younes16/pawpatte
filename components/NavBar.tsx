@@ -114,13 +114,13 @@ const NavBar = ({
                 alt="logo"
                 height={100}
                 width={100}
-                className="object-contain h-full min-w-[190px]  max-w-[190px]"
+                className="object-contain h-full min-w-[175px]  max-w-[175px]"
                 src={"/assets/LOGO-PAWPATTE-H.png"}
               />
             </Link>
 
             <div
-              className="flex lg:w-full gap-[1.25rem]  max-sm:!justify-center  max-lg:flex-row-reverse 
+              className="flex lg:w-full gap-3  max-sm:!justify-center  max-lg:flex-row-reverse 
           max-lg:justify-start items-center lg:justify-between"
             >
               <div className="flexcenter  max-lg:justify-end  max-lg:w-[56px] gap-6 ">

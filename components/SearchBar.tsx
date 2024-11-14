@@ -65,8 +65,8 @@ const SearchBarDialog = () => {
     <Dialog>
       <DialogTrigger asChild>
         <Button className=" text-white gap-2 px-4 py-2 rounded-md">
-          Search
           <Search className="h-6 w-6 " />
+          Search
         </Button>
       </DialogTrigger>
       <DialogContent

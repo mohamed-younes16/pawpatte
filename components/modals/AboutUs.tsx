@@ -6,7 +6,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Users, Target, Heart, X } from "lucide-react";
+import { Users, Target, Heart, X, AlertCircleIcon } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -23,7 +23,10 @@ export default function AboutUs() {
         className="text-lg font-semibold hover:text-second
                    text-primary block whitespace-nowrap "
       >
-        <Button> about us</Button>
+        <Button className=" text-white gap-2 px-4 py-2 rounded-md">
+          <AlertCircleIcon className="h-6 w-6 " />
+          about us
+        </Button>
       </DialogTrigger>
       <DialogContent
         className="bg-neutral-200 max-w-4xl 

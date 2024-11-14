@@ -28,6 +28,8 @@ import { toast } from "sonner";
 import { GuaranteeSchema } from "@/models/Schemas/Setup";
 import { Textarea } from "../ui/textarea";
 import { Separator } from "../ui/separator";
+import axios from "axios";
+import { apiLink } from "@/app/layout";
 
 const Guarantee = () => {
   const form = useForm({
@@ -38,16 +40,21 @@ const Guarantee = () => {
       phone: "",
       address: "",
       orderId: "",
-      issueDescription: "",
+      notes: "",
     },
   });
 
-  const onSubmit = (data) => {
-    console.log("Form submitted:", data);
-    toast.success(
-      <p>We've received your guarantee request. We'll get back to you soon.</p>
-    );
-    form.reset();
+  const onSubmit = async (data: z.infer<typeof GuaranteeSchema>) => {
+    const res = axios.post(`${apiLink}/guarantee`, { ...data });
+    res
+      .then((e) => {
+        console.log(e.data);
+        toast.success(e.data.message);
+      })
+      .catch((e) => {
+        console.log(e.response);
+        toast.error((e.response.data.message) || "error happened");
+      });
   };
 
   return (
@@ -178,7 +185,7 @@ const Guarantee = () => {
                 />
                 <FormField
                   control={form.control}
-                  name="issueDescription"
+                  name="notes"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel className="font-semibold flex ">

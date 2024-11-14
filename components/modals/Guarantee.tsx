@@ -50,10 +50,13 @@ const Guarantee = () => {
       .then((e) => {
         console.log(e.data);
         toast.success(e.data.message);
+        setTimeout(() => {
+          window.location.reload();
+        }, 500);
       })
       .catch((e) => {
         console.log(e.response);
-        toast.error((e.response.data.message) || "error happened");
+        toast.error(e.response.data.message || "error happened");
       });
   };
 

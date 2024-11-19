@@ -6,8 +6,8 @@ export const RegisterSchema = z
     email: z.string().min(4).email(),
     phoneNumber: z.string().min(4).max(16),
     address: z.string().default("").optional(),
-    password: z.string().min(4).max(14),
-    confirm: z.string().min(4).max(14),
+    password: z.string().min(8).max(14),
+    confirm: z.string().min(8).max(14),
   })
   .refine((data) => data.password === data.confirm, {
     message: "Passwords don't match",

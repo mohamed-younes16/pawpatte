@@ -25,9 +25,9 @@ const ProductCarousel = ({ productImages }: { productImages: ImageType[] }) => {
   }, [api]);
 
   return (
-    <div className="lg:basis-1/2  max-lg:mx-auto max-w-[280px]  flex flex-col">
+    <div className="lg:basis-1/2 !select-none  max-lg:mx-auto max-w-[280px] items-center flex flex-col">
       <Carousel setApi={setApi} className="w-[80%] mx-auto outline rounded-2xl outline-[2px] outline-neutral-400">
-        <CarouselContent className="h-[300px] ">
+        <CarouselContent className="lg:h-[300px] max-lg:h-[200px] ">
           {productImages.map((el) => (
             <CarouselItem key={el.id}>
               <Image
@@ -43,17 +43,17 @@ const ProductCarousel = ({ productImages }: { productImages: ImageType[] }) => {
         <CarouselPrevious />
         <CarouselNext />
       </Carousel>
-      <div className="flex py-6 select-none cursor-pointer overflow-auto gap-6 max-w-2xl">
+      <div className="flex py-6 w-[80%] mx-auto select-none cursor-pointer overflow-auto gap-6 max-w-2xl">
         {productImages.map((e, i) => (
           <Image
             key={i}
-            className={`rounded-xl max-lg:h-[100px] object-contain  transition-all
+            className={`rounded-xl h-[100px] min-w-[110px] object-contain  transition-all
              select-none selection:!bg-none  border-4 ${
                current == i + 1 && "border-cyan-400"
              }`}
             alt=""
             onClick={() => api?.scrollTo(i)}
-            height={40}
+            height={80}
             width={100}
             src={e.url}
           />

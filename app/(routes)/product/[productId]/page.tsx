@@ -25,7 +25,7 @@ const page = async ({
   const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
 
   return (
-    <div className="my-16 min-h-[70dvh] max-w-7xl mx-auto">
+    <div className="lg:my-16  min-h-[70dvh] max-w-7xl mx-auto">
       <div className="flex max-lg:px-6 lg:px-12 gap-8 max-lg:flex-col max-lg:items-start max-lg:justify-center">
         <ProductCarousel productImages={product.images} />
         <div className="space-y-4 md:mx-auto max-w-lg">

@@ -147,11 +147,11 @@ const ManageCart = ({ userData }: { userData: UserFetched | null }) => {
         </SheetTrigger>
         <SheetContent
           side={"right"}
-          className="bg-neutral-200 pt-0 max-lg:px-2 xl:w-[50dvw] !max-w-[1000px]   w-[95dvw] z-[9999] 
+          className="bg-neutral-200 pt-0 max-lg:px-2 xl:w-[50dvw] !max-w-[1000px]   w-[90dvw] z-[9999] 
           h-screen overflow-y-scroll "
         >
           <SheetClose
-            className="fixed h-[50px]  xl:w-[50dvw] !max-w-[1000px]  w-[95dvw]  top-0 right-0 
+            className="fixed h-[50px]  xl:w-[50dvw] !max-w-[1000px]  w-[90dvw]  top-0 right-0 
             flex justify-end backdrop-blur-sm py-2 px-1 4 z-50"
             onClick={() => setSideBarOpen(false)}
           >
@@ -173,10 +173,10 @@ const ManageCart = ({ userData }: { userData: UserFetched | null }) => {
                 variant={"destructive"}
                 disabled={fetching}
                 onClick={() => delteAllProducts()}
-                className="py-4 relative  gap-4 text-xl "
+                className="py-4 relative max-lg:text-sm max-lg:gap-2  gap-4 text-xl "
               >
                 {" "}
-                <Trash2 />
+                <Trash2 className="h-5 w-5" />
                 Empty All
               </Button>
             </div>
@@ -184,17 +184,17 @@ const ManageCart = ({ userData }: { userData: UserFetched | null }) => {
             <div className="flex gap-6 flex-col max-lg:flex-wrap">
               {products.length > 0 ? (
                 <>
-                  <div className=" space-y-4 max-lg:p-3 w-full border-neutral-300 border-[2px] bg-neutral-100 rounded-lg p-4  overflow-scroll">
+                  <div className=" space-y-4 max-lg:p-2 w-full border-neutral-300 border-[2px]  rounded-lg p-4  overflow-scroll">
                     {products.map(
                       (e: { product: product; quantity: number }, i) => (
                         <>
                           {" "}
                           <Card
                             key={e.product.id}
-                            className="w-full relative flex flex-col"
+                            className="w-full relative !bg-transparent border-0 shadow-none flex flex-col"
                           >
-                            <div className="flex w-full">
-                              <div className="group basis-1/3 max-w-[100px] min-w-[100px] rounded-xl relative">
+                            <div className="flex items-center w-full">
+                              <div className="group basis-1/3 flexcenter max-w-[80px] h-[100px] min-w-[80px] lg:max-w-[100px] lg:min-w-[100px] rounded-xl relative">
                                 <Image
                                   alt={e.product.id}
                                   className="object-contain rounded-xl"
@@ -206,30 +206,32 @@ const ManageCart = ({ userData }: { userData: UserFetched | null }) => {
                               <CardHeader className="basis-2/3 py-0 max-lg:px-3">
                                 <Link href={`/product/${e.product.id}`}>
                                   {" "}
-                                  <CardTitle>{e.product.name}</CardTitle>
-                                  <CardTitle className="!my-2">
+                                  <CardTitle className="max-lg:text-lg font-bold">
+                                    {e.product.name}
+                                  </CardTitle>
+                                  <CardTitle className="my-1 lg:my-2 max-lg:text-lg font-semibold">
                                     {formatedPrice(e.product.price)}
                                   </CardTitle>
-                                  <CardDescription className="text-lg font-semibold desc max-md:text-sm">
+                                  <CardDescription className="text-lg font-semibold desc max-lg:text-xs">
                                     {e.product.description}
                                   </CardDescription>{" "}
                                 </Link>
                                 <div className="text-lg pl-6 pb-6 font-semibold !flex items-center gap-2  desc max-lg:text-sm">
                                   <Button
-                                    size={"icon"}
+                                    size={"sm"}
                                     onClick={() => setquantity(e.product.id, 1)}
                                     className="bg-green-500"
                                   >
-                                    <PlusCircle />
+                                    <PlusCircle className=" h-4 w-4" />
                                   </Button>
                                   <Button
-                                    size={"icon"}
+                                    size={"sm"}
                                     onClick={() =>
                                       setquantity(e.product.id, -1)
                                     }
                                     className="bg-red-500"
                                   >
-                                    <Minus />
+                                    <Minus className=" h-4 w-4" />
                                   </Button>
                                   <div>
                                     <Button
@@ -244,7 +246,7 @@ const ManageCart = ({ userData }: { userData: UserFetched | null }) => {
                               </CardHeader>
                             </div>
                             <Button
-                              className="absolute top-2 py-0  right-2 z-30"
+                              className="absolute top-0 py-0  right-0 z-30"
                               onClick={() => deleteProduct(e.product)}
                               size={"icon"}
                             >

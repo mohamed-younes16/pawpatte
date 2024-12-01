@@ -16,7 +16,8 @@ const RegisterModal = ({ open, setOpen }: AuthenticationModalType) => {
       <DialogTrigger className=" text-start w-full">
         <MenuItem label="register" onclick={() => {}} />
       </DialogTrigger>
-      <DialogContent>
+      <DialogContent className=" max-sm:px-4  max-w-lg 
+      lg:!w-[80vw] lg:max-w-[900px] h-[80vh] overflow-scroll">
         <div className="flexcenter mb-6 font-semibold text-xl">Register</div>
         <h1 className="text-3xl max-md:text-xl font-bold">Register to Store</h1>
         <div className="text-foreground/80">Create an Account</div>

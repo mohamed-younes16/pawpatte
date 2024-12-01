@@ -22,7 +22,7 @@ const page = async ({
   const products: product[] | [] = res.products;
 
   return (
-    <div className=" my-16 max-w-7xl mx-auto">
+    <div className=" min-h-[50vh] max-md:px-[5dvw] px-6  max-w-7xl mx-auto ">
       {products?.length > 0 ? (
         <ProductsGrid items={products} />
       ) : (

@@ -25,14 +25,14 @@ const ProductCarousel = ({ productImages }: { productImages: ImageType[] }) => {
   }, [api]);
 
   return (
-    <div className="lg:basis-1/2 !select-none  max-lg:mx-auto max-w-[280px] items-center flex flex-col">
-      <Carousel setApi={setApi} className="w-[80%] mx-auto outline rounded-2xl outline-[2px] outline-neutral-400">
-        <CarouselContent className="lg:h-[300px] max-lg:h-[200px] ">
+    <div className="lg:basis-1/2 !select-none  max-lg:mx-auto max-w-[400px] items-center flex flex-col">
+      <Carousel setApi={setApi} className="w-[80%] lg:h-[300px] lg:w-[400px]   mx-auto outline rounded-2xl outline-[2px] outline-neutral-400">
+        <CarouselContent className="lg:h-[300px] -ml-0 lg:w-[400px]   max-lg:h-[200px] ">
           {productImages.map((el) => (
-            <CarouselItem key={el.id}>
+            <CarouselItem  className="w-ful lg:h-[300px] lg:w-[400px]  pl-0" key={el.id}>
               <Image
                 alt={el.createdAt}
-                className="object-contain h-full rounded-xl !w-full "
+                className="object-contain h-full overflow-hidden  rounded-xl !w-full "
                 src={el.url}
                 height={50}
                 width={100}

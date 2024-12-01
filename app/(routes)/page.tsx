@@ -6,6 +6,7 @@ import { ShoppingCart } from "lucide-react";
 import CatgoriesCarousel from "@/components/CatgoriesCarousel";
 
 import Features from "@/components/Features";
+import Faq from "@/components/Faq";
 
 export const metadata = {
   title: "pawpatte",
@@ -35,6 +36,7 @@ export default async function Home() {
           title="Products"
         />
         {products && <ProductsGrid items={products} />}
+        <Faq/>
       </div>
     </div>
   );

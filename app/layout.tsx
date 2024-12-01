@@ -5,13 +5,14 @@ import { ReactNode } from "react";
 import "./globals.css";
 import { Toaster } from "sonner";
 import { Urbanist } from "next/font/google";
-import NavBar from "@/components/NavBar";
+
 
 import getCurrentUser from "@/actions/getCurrentUser";
 import { getDiscountEligible } from "@/actions";
 import { DiscountDialog } from "@/components/modals/Discount";
 import { discount } from "@prisma/client";
 import CliComp from "@/providers/modalProvider";
+import NavBar from "@/components/NavBar";
 
 const font = Urbanist({ subsets: ["latin"] });
 export const apiLink = process.env.NEXT_PUBLIC_API_URL;

@@ -16,6 +16,46 @@ import {
   DialogTrigger,
   DialogClose,
 } from "@/components/ui/dialog";
+
+const missionCards = [
+  {
+    icon: Users,
+    title: "Caring",
+    description: "We believe every pet deserves care and affection, just like family.",
+  },
+  {
+    icon: Target,
+    title: "Quality",
+    description: "Our products are crafted with care, providing pets with joy and durability.",
+  },
+  {
+    icon: Heart,
+    title: "Comfort",
+    description: "Designed with pets in mind, ensuring comfort in every product.",
+  },
+];
+
+const teamMembers = [
+  {
+    name: "John",
+    role: "Pet Behavior Specialist",
+    image: "/assets/placeholder.jpg",
+    description: "Expert in understanding and improving pet behavior patterns.",
+  },
+  {
+    name: "Chris",
+    role: "Product Designer",
+    image: "/assets/placeholder.jpg",
+    description: "Creates innovative pet products with comfort in mind.",
+  },
+  {
+    name: "Mark",
+    role: "Veterinary Consultant",
+    image: "/assets/placeholder.jpg",
+    description: "Ensures all products meet pet health standards.",
+  },
+];
+
 export default function AboutUs() {
   return (
     <Dialog>
@@ -58,45 +98,23 @@ export default function AboutUs() {
                     happiness, health, and comfort.
                   </p>
                   <div className="grid gap-8 md:grid-cols-3">
-                    <Card>
-                      <CardHeader>
-                        <CardTitle className="flex items-center">
-                          <Users className="mr-2" /> Caring
-                        </CardTitle>
-                      </CardHeader>
-                      <CardContent>
-                        <CardDescription>
-                          We believe every pet deserves care and affection, just
-                          like family.
-                        </CardDescription>
-                      </CardContent>
-                    </Card>
-                    <Card>
-                      <CardHeader>
-                        <CardTitle className="flex items-center">
-                          <Target className="mr-2" /> Quality
-                        </CardTitle>
-                      </CardHeader>
-                      <CardContent>
-                        <CardDescription>
-                          Our products are crafted with care, providing pets
-                          with joy and durability.
-                        </CardDescription>
-                      </CardContent>
-                    </Card>
-                    <Card>
-                      <CardHeader>
-                        <CardTitle className="flex items-center">
-                          <Heart className="mr-2" /> Comfort
-                        </CardTitle>
-                      </CardHeader>
-                      <CardContent>
-                        <CardDescription>
-                          Designed with pets in mind, ensuring comfort in every
-                          product.
-                        </CardDescription>
-                      </CardContent>
-                    </Card>
+                    {missionCards.map((card, index) => {
+                      const Icon = card.icon;
+                      return (
+                        <Card key={index}>
+                          <CardHeader>
+                            <CardTitle className="flex items-center">
+                              <Icon className="mr-2" /> {card.title}
+                            </CardTitle>
+                          </CardHeader>
+                          <CardContent>
+                            <CardDescription>
+                              {card.description}
+                            </CardDescription>
+                          </CardContent>
+                        </Card>
+                      );
+                    })}
                   </div>
                 </div>
               </div>
@@ -107,21 +125,20 @@ export default function AboutUs() {
                     Our Team
                   </h2>
                   <div className="grid gap-8 md:grid-cols-3">
-                    {["john", "chris", "mark"].map((name, index) => (
+                    {teamMembers.map((member, index) => (
                       <Card key={index}>
                         <CardHeader>
-                          <CardTitle>{name}</CardTitle>
-                          <CardDescription>Pet Lover & Expert</CardDescription>
+                          <CardTitle>{member.name}</CardTitle>
+                          <CardDescription>{member.role}</CardDescription>
                         </CardHeader>
                         <CardContent>
                           <img
-                            src={`/assets/placeholder.jpg`}
-                            alt={name}
+                            src={member.image}
+                            alt={member.name}
                             className="w-full h-48 object-cover rounded-md mb-4"
                           />
-                          <p className="text-sm">
-                            Dedicated to creating the best for pets and their
-                            owners.
+                          <p className="text-sm text-gray-600">
+                            {member.description}
                           </p>
                         </CardContent>
                       </Card>
